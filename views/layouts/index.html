@@ -239,7 +239,7 @@
                         <div>
                             <b id="totalText">TOTAL: 0$</b>
                         </div>
-                        <button>CHECKOUT</button>
+                        <button onclick="personalInfo.style.display = 'flex'">CHECK OUT</button>
                     </div>
                 </div>
             </div>
@@ -285,11 +285,19 @@
             </div>
             <h2 onclick="closeBuyPage()">X</h2>
         </div>
+        
+
+        <div id="personalInfo">
+            <div id="personalInfoForm">
+                <p>Personal Information</p>
+                <input id="clientName" placeholder="Your name" spellcheck="false">
+                <input id="clientNumber" placeholder="Your number" spellcheck="false">
+                <input id="clientEmail" placeholder="Your email" spellcheck="false">
+                <button id="sendOrder">Complete purchase</button>
+                <b onclick="personalInfo.style.display = 'none'">X</b>
+            </div>
+        </div>
     </body>
-
-
-
-
 
 
 <script>
@@ -359,7 +367,7 @@
         var btnProperties = ({
             zIndex: 10,
             position: 'relative',
-            idName: "nav-button-mobile",
+            idName: "navButtonMobile",
             place: '#nav-container',
             color: '#aaa',
             size: 50,
@@ -370,6 +378,18 @@
         mustafaButton(btnProperties);
     }
     runMustafaBtn();
+
+
+    document.addEventListener('click', function(evt){
+        if(evt.target.id == "navButtonMobile"){
+            if(navBar.style.display == "flex"){
+                navBar.style.display = "none";
+            }
+            else{
+                navBar.style.display = "flex";
+            }
+        }
+    });
 
 
 
