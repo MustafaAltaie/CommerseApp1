@@ -1,0 +1,942 @@
+@media only screen and (max-width: 1024px){
+    body ul{
+        width: 100%;
+        flex-direction: column;
+        left: 0;
+        display: none;
+    }
+    body ul a{
+        text-align: center;
+        font-size: 40px;
+    }
+    body #nav-button-mobile{
+        display: block;
+    }
+    body #homePicContainer{
+        height: 1400px;
+    }
+    body .homePic{
+        height: 1400px;
+    }
+    body .channel{
+        width: 70px;
+        height: 70px;
+        margin: 20px;
+    }
+    body .offer{
+        width: 700px;
+    }
+    body #employeePicContainerSmall{
+        width: 800px;
+    }
+    body .employeePic{
+        min-width: 245px;
+        min-height: 245px;
+        max-height: 245px;
+    }
+    body #employeeInfoContainer{
+        width: 70%;
+    }
+    body #employeeInfoContainer p{
+        padding: 0 20px 0 20px;
+        font-size: 35px;
+        height: 300px;
+    }
+    body #section3 h1{
+        font-size: 90px;
+    }
+}
+
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Thasadith', sans-serif;
+    font-size: 18px;
+    user-select: none;
+    text-decoration: none;
+}
+body{
+    background: #222;
+}
+body::-webkit-scrollbar{
+    background: #181818;
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb{
+    background: rgb(145, 101, 51);
+    border: solid 1px #181818;
+    border-radius: 10px;
+}
+
+#nav-container{
+    background: #111;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s;
+}
+#nav-button-mobile{
+    display: none;
+}
+#logo-container{
+    flex-basis: 45%;
+    padding: 10px 0 10px 50px;
+}
+ul{
+    z-index: 200;
+    position: fixed;
+    right: 200px;
+    top: 20px;
+    flex-basis: 45%;
+    display: flex;
+    list-style: none;
+    background: #111;
+    border-radius: 50px;
+    transition: right 0.5s, border-radius linear 0.7s;
+}
+ul a{
+    padding: 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.1s;
+    white-space: nowrap;
+}
+ul a:hover{
+    transform: translateY(-3px);
+    color: rgb(255, 156, 117);
+}
+#cart-container{
+    z-index: 200;
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    cursor: pointer;
+    padding: 9px 15px;
+    border-radius: 50%;
+    background: #111;
+    transition: right 0.5s, border-radius linear 0.7s, filter 0.1s;
+}
+#cart-container:hover{
+    padding: 5px 15px 13px 15px;
+}
+#cart-container img{
+    filter: grayscale(100%);
+}
+#cart-container:hover img{
+    filter: grayscale(0%);
+}
+#cartNmOfItms{
+    z-index: 200;
+    position: fixed;
+    background: #050;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: 0.5s;
+    text-align: center;
+    display: none;
+}
+#cartN{
+    position: absolute;
+    background: #050;
+    color: #fff;
+    top: 48px;
+    right: 20px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    pointer-events: none;
+    display: none;
+}
+#cart-container:hover p{
+    top: 44px;
+}
+
+
+
+
+#section1{
+    position: relative;
+}
+#mainInfoContainer{
+    z-index: 100;
+    position: absolute;
+    text-align: center;
+    color: #ddd;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#mainInfoContainer h1{
+    font-size: 40px;
+}
+#mainInfoContainer h2{
+    font-size: 20px;
+    margin: 10px 0 20px 0;
+}
+#mainInfoContainer h3{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    background: rgb(197, 137, 68);
+    cursor: pointer;
+    width: 150px;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
+#homePicContainer{
+    display: flex;
+    height: 600px;
+}
+.homePic{
+    position: absolute;
+    min-width: 100%;
+    max-width: 100%;
+    height: 600px;
+    object-fit: cover;
+    opacity: 0;
+    transition: 1s;
+    pointer-events: none;
+}
+#SwipeRight, #SwipeLeft{
+    position: absolute;
+    font-size: 50px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 50px 20px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#SwipeRight{
+    right: 0;
+}
+#channelContainer{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    background: #252525;
+    border-radius: 20px;
+    border: solid 1px #aaa;
+}
+.channel{
+    width: 30px;
+    height: 30px;
+    background: #555;
+    border-radius: 50%;
+    margin: 2px;
+    transition: 0.5s;
+}
+
+
+
+
+
+
+#section2{
+    background: #222;
+    text-align: center;
+}
+#offerHeader{
+    font-size: 50px;
+    color: rgb(197, 137, 68);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 50px 0;
+}
+#offerContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px 70px 100px 70px;
+}
+.offer{
+    width: 350px;
+    min-height: 100%;
+    background-image: url('images/signInUp2.jpg');
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 25px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+.offer:hover{
+    transform: translateY(-20px);
+}
+
+.offer > h1{
+    padding: 20px 0;
+    color: rgb(197, 137, 68);
+    font-size: 25px;
+    font-weight: lighter;
+    pointer-events: none;
+}
+.offer img{
+    width: 80%;
+    height: 200px;
+    border: solid 1px rgba(197, 137, 68, 0.3);
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    pointer-events: none;
+}
+.offer p{
+    color: #999;
+    padding: 0 20px;
+    min-height: 100px;
+    max-height: 100px;
+    overflow-y: scroll;
+    pointer-events: none;
+}
+.offer p::-webkit-scrollbar{
+    display: none;
+}
+.offer h2{
+    color: #999;
+    padding: 20px 0;
+    font-size: 30px;
+    pointer-events: none;
+}
+
+
+
+
+#section3{
+    background: rgb(61, 51, 39);
+    background-image: url('images/yellowBackground.jpg');
+    padding: 70px 0;
+}
+#employeePicContainerSmall{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    width: 510px;
+    padding: 10px 0;
+    overflow-x: hidden;
+    margin-bottom: 20px;
+}
+.employeePic{
+    min-width: 150px;
+    min-height: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 10px;
+    filter: grayscale(100%);
+    border: solid 1px rgb(197, 137, 68);
+    transition: 0.3s;
+}
+#addEmployee{
+    border: solid 1px #000;
+}
+
+#employeeInfoContainer{
+    position: relative;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#employeeInfoContainer b{
+    position: absolute;
+    top: 0;
+    font-size: 40px;
+    color: rgb(155, 110, 42);
+    padding: 30px 20px;
+    cursor: pointer;
+}
+#employeeRight{
+    right: 0;
+}
+#employeeInfoContainer p{
+    padding: 0 100px 0 100px;
+    font-size: 20px;
+    color: #aaa;
+    text-align: center;
+    height: 115px;
+    overflow-y: scroll;
+    text-shadow: 1px 1px 1px #000;
+}
+#employeeInfoContainer p::-webkit-scrollbar{
+    display: none;
+}
+#section3 h1{
+    padding: 50px 0 0 0;
+    text-align: center;
+    font-family: 'Parisienne', cursive;
+    font-size: 50px;
+    color:rgb(155, 110, 42);
+    text-shadow: 1px 1px 1px #000;
+    font-weight: normal;
+}
+#section3 h3{
+    color: #aaa;
+    text-align: center;
+    font-size: 20px;
+    font-weight: normal;
+    text-shadow: 1px 1px 1px #000;
+}
+
+
+
+
+#otherSectionContainer{
+    background: #222;
+    height: 620px;
+    padding: 20px 0;
+    display: none;
+    cursor: default;
+}
+
+
+
+
+
+
+#productsSection{
+    display: flex;
+    cursor: default;
+    min-width: 800px;
+}
+#productItems{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding:  10px 0;
+    height: 600px;
+    overflow-y: scroll;
+    background-image: url('images/signInUp2.jpg');
+}
+#productItems::-webkit-scrollbar{
+    width: 20px;
+    background: #222;
+}
+#productItems::-webkit-scrollbar-thumb{
+    border: solid 1px #222;
+    background: rgb(30, 57, 71);
+    border-radius: 20px;
+}
+#productsMenu{
+    background: rgb(30, 57, 71);
+    padding: 40px 2%;
+    min-width: 16%;
+    height: 540px;
+    border-radius: 0 30px 30px 0;
+}
+#productsMenu label{
+    margin: 0 30px 0 3px;
+    font-size: 25px;
+    font-weight: normal;
+    color: #aaa;
+}
+.productsMenueSmall{
+    margin: 0 0 30px 30px;
+    overflow-y: scroll;
+    max-height: 75px;
+}
+.productsMenueSmall::-webkit-scrollbar{
+    background: rgba(0, 0, 0, 0.3);
+    width: 5px;
+    border-radius: 5px;
+}
+.productsMenueSmall::-webkit-scrollbar-thumb{
+    width: 100%;
+    padding: #000 solid 1px;
+    border-radius: 5px;
+    background: #aaa;
+}
+#productsMenuePrises{
+    margin-top: 10px;
+    border-top: solid 1px #000;
+    padding-top: 20px;
+}
+.item{
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    background: #191919;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    margin: 10px;
+}
+.item:hover{
+    transform: translateY(-10px);
+}
+.item h1{
+    font-size: 25px;
+    color: rgb(134, 93, 46);
+}
+.item img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+.item p{
+    margin-bottom: 15px;
+    color: #aaa;
+    height: 50px;
+    overflow: scroll;
+    font-weight: normal;
+}
+.item p::-webkit-scrollbar{
+    display: none;
+}
+.item i{
+    background: #090909;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 20px;
+}
+
+
+
+#contactSection{
+    width: 100%;
+    height: 620px;
+    background-image: url('images/signInUp2.jpg');
+    cursor: default;
+}
+#contactUsIconContainer{
+    display: flex;
+    justify-content: center;
+    color: #aaa;
+    padding: 30px 0;
+}
+#contactUsIconContainer div{
+    text-align: center;
+    padding: 0 20px;
+    width: 15%;
+}
+#contactUsIconContainer img{
+    width: 50px;
+    height: 50px;
+}
+#contactUsInputsContainer{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+}
+#contactUsInputsContainer input, #contactUsInputsContainer textarea, #contactUsInputsContainer button{
+    min-width: 100%;
+    max-width: 100%;
+    height: 40px;
+    outline: none;
+    border: solid 1px #aaa;
+    border-radius: 50px;
+    background: rgb(26, 26, 26);
+    color: #fff;
+    text-align: center;
+    padding: 2px 0;
+    margin: 5px 0;
+}
+#contactUsInputsContainer textarea{
+    min-height: 90px;
+    padding-top: 7px;
+    resize: none;
+}
+#contactUsInputsContainer button{
+    background:rgb(134, 93, 46);
+    color: black;
+    border: solid 1px #fff;
+    font-weight: bold;
+    height: 50px;
+    cursor: pointer;
+}
+#contactUsSMediaIcon{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    text-align: center;
+    padding-top: 40px;
+    color: #aaa;
+}
+#contactUsSMediaIcon img{
+    width: 40px;
+    margin: 20px;
+}
+
+
+
+
+
+
+#aboutSection{
+    height: 620px;
+    background-image: url('images/signInUp2.jpg');
+    cursor: default;
+}
+#aboutSecSmall{
+    display: flex;
+    height: 100%;
+}
+#aboutSecP1, #aboutSecP2{
+    width: 50%;
+    padding: 80px;
+    border-right: solid 1px rgb(126, 94, 19);
+}
+#aboutSecP1 h1{
+    font-size: 50px;
+    color: rgb(126, 94, 19);
+    border-bottom: solid 1px rgb(126, 94, 19);
+    margin-bottom: 30px;
+}
+#aboutSecP1 h2{
+    font-size: 22px;
+    color: rgb(126, 94, 19);
+}
+#aboutSecP1 p{
+    font-size: 18px;
+    color: #aaa;
+    margin: 0 0 40px 0;
+}
+
+#aboutSecP2{
+    border-right: none;
+}
+#aboutSecP2 h1{
+    text-align: center;
+    font-size: 50px;
+    color: rgb(126, 94, 19);
+    border-bottom: solid 1px rgb(126, 94, 19);
+    margin-bottom: 40px;
+}
+#aboutSecP2Small{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 73%;
+    overflow-y: scroll;
+}
+#aboutSecP2Small::-webkit-scrollbar{
+    background: rgba(0, 0, 0, 0);
+    width: 1px;
+}
+#aboutSecP2Small::-webkit-scrollbar-thumb{
+    width: 100%;
+    background: rgb(126, 94, 19);
+}
+#aboutSecP2Small div{
+    display: flex;
+    margin: 10px 0;
+}
+#aboutSecP2Small img{
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 15px;
+    filter: grayscale(40%);
+}
+#aboutSecP2Small p{
+    font-weight: bold;
+    padding: 10px 0;
+}
+#aboutSecP2Small i{
+    color: #aaa;
+    font-weight: normal;
+}
+
+
+
+
+#chartSection{
+    height: 620px;
+    background-image: url('images/signInUp2.jpg');
+    color: #aaa;
+    cursor: default;
+}
+#chartSectionSmall{
+    display: flex;
+    justify-content: center;
+    padding: 50px 200px;
+}
+#emptyCartText{
+    position: absolute;
+    color:rgb(97, 202, 75);
+    font-size: 50px;
+    font-weight: normal;
+}
+#chartSectionP1{
+    width: 60%;
+    min-width: 550px;
+    height: 530px;
+    overflow-y: scroll;
+}
+#chartSectionP1::-webkit-scrollbar{
+    display: none;
+}
+#chartSectionP1 div{
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #181818;
+    padding: 10px 0;
+    margin: 10px;
+    border-radius: 10px;
+}
+#chartSectionP1 img{
+    max-width: 120px;
+    min-width: 120px;
+    max-height: 120px;
+    min-height: 120px;
+    object-fit: cover;
+    border: solid 1px rgba(255, 255, 255, 0.2);
+}
+#chartSectionP1 p{
+    margin: 0 7%;
+    font-size: 30px;
+}
+#chartSectionP1 input{
+    font-size: 30px;
+    width: 60px;
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0);
+    color: #aaa;
+    border: solid 1px rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+#chartSectionP1 b{
+    font-size: 30px;
+    color: #f00;
+    padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#chartSectionP1 i{
+    text-align: center;
+    width: 20%;
+    border: 5% solid #181818;
+    height: 90%;
+    overflow-y: scroll;
+    padding: 0 2%;
+    margin: 0 2%;
+    font-weight: normal;
+}
+#chartSectionP1 i::-webkit-scrollbar{
+    width: 2px;
+}
+#chartSectionP1 i::-webkit-scrollbar-thumb{
+    width: 100%;
+    background: rgb(81, 151, 67);
+}
+
+#chartSectionP2{
+    width: 30%;
+    min-width: 200px;
+    height: 400px;
+    text-align: center;
+    padding: 100px 0 0 100px;
+    display: none;
+}
+#chartSectionP2 h1{
+    font-size: 40px;
+    font-weight: normal;
+    color:rgb(93, 163, 79);
+}
+#chartSectionP2 p, #chartSectionP2 b{
+    font-size: 30px;
+    font-weight: normal;
+}
+#chartSectionP2 div{
+    margin: 30px 0;
+}
+#chartSectionP2 button{
+    background: rgb(62, 119, 50);
+    color: white;
+    border: solid 1px #111;
+    border-radius: 5px;
+    padding: 10px 50px;
+}
+
+
+
+
+
+#accountSection{
+    position: relative;
+    height: 620px;
+    cursor: default;
+    background-image: url('images/signInUp2.jpg');
+    overflow: hidden;
+}
+#registerContainer, #logInContainer{
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    width: 340px;
+    padding: 30px;
+    background: rgb(20, 67, 85);
+    border: solid 1px #000;
+    border-radius: 30px;
+    pointer-events: none;
+}
+#logInP, #registerP{
+    text-align: center;
+    font-size: 30px;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #fff;
+}
+#regInputDiv input, #logInputDiv input, #regSubmit, #signInSubmit{
+    width: 100%;
+    padding: 5px 0;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-bottom: solid 1px #000;
+    background: rgb(20, 67, 85);;
+    color: #fff;
+    margin: 10px 0;
+    font-weight: normal;
+}
+#regSubmit, #signInSubmit{
+    background: rgb(255, 255, 255);
+    height: 50px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px 0;
+    border-radius: 50px;
+    border: solid 1px #000;
+    text-align: center;
+}
+
+#logInContainer{
+    z-index: 100;
+    height: 400px;
+    width: 340px;
+    background: rgb(255, 255, 255);
+    border-radius: 30px;
+    transition: 0.5s;
+    pointer-events: unset;
+}
+#registerP{
+    margin-bottom: 30px;
+    color: #000;
+}
+#logInputDiv input{
+    background: rgb(255, 255, 255);
+    color: #000;
+    font-weight: bold;
+}
+#signInSubmit{
+    margin: 40px 0;
+    color: #fff;
+    background: rgb(20, 67, 85);
+    font-weight: normal;
+}
+
+
+#section4{
+    position: relative;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    color: #aaa;
+    font-weight: normal;
+    padding: 40px 40px 80px 40px;
+}
+#section4 div{
+    width: 22%;
+    padding: 0 5%;
+}
+#section4 h2{
+    position: absolute;
+    bottom: 0;
+    font-weight: normal;
+    padding: 0 0 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+
+#buyPage{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 75%;
+    background-image: url('images/yellowBackground.jpg');
+    border: solid 1px #aaa;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    cursor: default;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.356);
+    display: none;
+}
+#buyImg{
+    height: 75%;
+    width: 40%;
+    object-fit: cover;
+    border: solid 1px #000;
+    border-radius: 10px;
+    pointer-events: none;
+}
+#buyPage div{
+    width: 40%;
+    text-align: center;
+}
+#buyPage h1{
+    font-size: 50px;
+    text-align: center;
+}
+#buyPage p{
+    color: #aaa;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+#buyPage input{
+    width: 70px;
+    height: 50px;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    border: none;
+    border-radius: 5px;
+}
+#buyPage i{
+    background: #111;
+    color: #aaa;
+    padding: 10px 30px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+#buyPage h2{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px 40px;
+    color: #f00;
+    cursor: pointer;
+    font-size: 40px;
+}
