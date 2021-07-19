@@ -5,7 +5,7 @@ const path = require('path');
 const controllers = require('./controllers/controllers');
 
 var app = express();
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
 app.listen(port);
 
 app.use(bodyP.urlencoded({

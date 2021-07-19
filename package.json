@@ -9,7 +9,7 @@
     "serve": "nodemon server.js"
   },
   "engine": {
-    "node": "12.18.2"
+    "node": "14.17.0"
   },
   "author": "Mustafa Altaie",
   "license": "ISC",
