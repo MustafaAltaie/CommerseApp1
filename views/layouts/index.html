@@ -365,7 +365,7 @@
 
     function runMustafaBtn(){
         var btnProperties = ({
-            zIndex: 10,
+            zIndex: 200,
             position: 'relative',
             idName: "navButtonMobile",
             place: '#nav-container',
@@ -382,11 +382,11 @@
 
     document.addEventListener('click', function(evt){
         if(evt.target.id == "navButtonMobile"){
-            if(navBar.style.display == "flex"){
-                navBar.style.display = "none";
+            if(navBar.offsetTop < 0){
+                navBar.style.top = "90px";
             }
             else{
-                navBar.style.display = "flex";
+                navBar.style.top = "-500px";
             }
         }
     });

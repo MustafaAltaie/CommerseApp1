@@ -7,9 +7,10 @@
         width: 100%;
         flex-direction: column;
         left: 0;
-        top: 90px;
-        display: none;
+        top: -500px;
         position: fixed;
+        border-radius: 0 0 50px 50px;
+        transition: top 0.5s;
     }
     body ul a{
         text-align: center;
@@ -50,6 +51,220 @@
     }
     body #section3 h1{
         font-size: 90px;
+    }
+
+    body #buyPage{
+        width: 95%;
+        height: 1400px;
+        flex-direction: column;
+    }
+    body #buyImg{
+        height: 50%;
+        width: 90%;
+    }
+    body #buyPage div{
+        width: 90%;
+    }
+    body #buyPage p{
+        font-size: 40px;
+    }
+    body #buyPage i{
+        padding: 30px 70px;
+        font-size: 35px;
+    }
+    body #buyPage h2{
+        font-size: 70px;
+    }
+    body #section4{
+        padding: 80px 10px;
+    }
+
+    body #otherSectionContainer{
+        height: 1500px;
+    }
+    body #productsSection{
+        flex-direction: column;
+        min-width: 100%;
+    }
+    body #productItems{
+        width: 100%;
+        height: 1200px;
+    }
+    body #productsMenu{
+        min-width: 96%;
+        height: 300px;
+        overflow-y: scroll;
+    }
+    body #productsMenu label{
+        font-size: 40px;
+    }
+    body .productsMenueSmall{
+        max-height: 100px;
+    }
+    body .item{
+        width: 350px;
+        height: 550px;
+    }
+    body .item h1{
+        font-size: 50px;
+    }
+    body .item img{
+        height: 300px;
+    }
+    body .item p{
+        height: 100px;
+        font-size: 25px;
+    }
+    body .item i{
+        padding: 7px 70px;
+        font-size: 30px;
+    }
+
+    body #contactSection{
+        height: 100%;
+        padding: 50px 0;
+    }
+    body #contactUsIconContainer div{
+        width: 30%;
+        height: 250px;
+    }
+    body #contactUsIconContainer p{
+        font-size: 35px;
+    }
+    body #contactUsInputsContainer{
+        width: 90%;
+    }
+    body #contactUsInputsContainer input, body #contactUsInputsContainer textarea, body #contactUsInputsContainer button{
+        height: 100px;
+        font-size: 35px;
+        margin: 20px 0;
+    }
+    body #contactUsInputsContainer textarea{
+        min-height: 200px;
+        padding: 30px 0;
+    }
+    body #contactUsSMediaIcon{
+        width: 100%;
+        padding-top: 100px;
+    }
+    body #contactUsSMediaIcon p{
+        font-size: 35px;
+    }
+    body #contactUsSMediaIcon img{
+        width: 70px;
+    }
+    body #aboutSection{
+        height: 100%;
+    }
+    body #aboutSecSmall{
+        flex-direction: column;
+    }
+    body #aboutSecP1, body #aboutSecP2{
+        width: 100%;
+        padding: 50px 0;
+        border-right: none;
+        text-align: center;
+    }
+    body #aboutSecP1 h2{
+        font-size: 40px;
+    }
+    body #aboutSecP1 p{
+        font-size: 30px;
+    }
+    body #aboutSecP2Small{
+        width: 70%;
+        height: 50%;
+    }
+    body #aboutSecP2Small img{
+        min-width: 200px;
+        min-height: 200px;
+    }
+    body #aboutSecP2Small p, body #aboutSecP2Small i{
+        font-size: 35px;
+    }
+
+    body #chartSection{
+        height: 100%;
+    }
+    body #chartSectionSmall{
+        flex-direction: column;
+    }
+    body #chartSectionSmall{
+        padding: 50px 20px;
+    }
+    body #chartSectionP1{
+        width: 100%;
+        height: 900px;
+    }
+    body #chartSectionP1 div{
+        height: 250px;
+    }
+    body #chartSectionP1 p{
+        font-size: 50px;
+        margin: 0 4%;
+    }
+    body #chartSectionP1 i{
+        font-size: 30px;
+    }
+    body #chartSectionP1 img{
+        min-width: 250px;
+        min-height: 250px;
+    }
+    body #chartSectionP1 b{
+        font-size: 50px;
+        margin: 0 4%;
+    }
+    
+    body #chartSectionP2{
+        width: 100%;
+        padding: 40px 0;
+    }
+    body #chartSectionP2 h1{
+        font-size: 70px;
+    }
+    body #chartSectionP2 p, body #chartSectionP2 b{
+        font-size: 50px;
+    }
+    body #chartSectionP2 button{
+        padding: 20px 100px;
+        font-size: 35px;
+    }
+
+    body #personalInfoForm{
+        width: 800px;
+        height: 800px;
+    }
+    body #personalInfoForm p{
+        font-size: 60px;
+    }
+    body #personalInfoForm input, body #personalInfoForm button{
+        margin: 15px 0;
+        padding: 15px;
+        font-size: 35px;
+    }
+
+    body #accountSection{
+        height: 100%;
+    }
+    body #logInContainer p{
+        font-size: 40px;
+    }
+    body #registerContainer, body #logInContainer{
+        height: 800px;
+        width: 700px;
+    }
+    body #logInP, body #registerP{
+        font-size: 50px;
+    }
+    body #regInputDiv input, body #logInputDiv input, body #regSubmit, body #signInSubmit{
+        padding: 20px 0;
+        margin: 20px 0;
+        font-size: 40px;
+    }
+    body #regSubmit, body #signInSubmit{
+        height: 90px;
+        margin: 70px 0;
+        border-radius: 90px;
     }
 }
 
@@ -92,7 +307,7 @@ body::-webkit-scrollbar-thumb{
     padding: 10px 0 10px 50px;
 }
 ul{
-    z-index: 200;
+    z-index: 190;
     position: fixed;
     right: 200px;
     top: 20px;
@@ -883,6 +1098,9 @@ ul a:hover{
     left: 50%;
     transform: translateX(-50%);
 }
+#section4 p{
+    font-size: 18px;
+}
 
 
 
@@ -893,7 +1111,7 @@ ul a:hover{
     top: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    height: 75%;
+    height: 600px;
     background-image: url('images/yellowBackground.jpg');
     border: solid 1px #aaa;
     justify-content: center;
@@ -923,6 +1141,7 @@ ul a:hover{
     color: #aaa;
     font-size: 20px;
     text-align: center;
+    font-weight: normal;
     margin: 20px 0;
 }
 #buyPage input{
