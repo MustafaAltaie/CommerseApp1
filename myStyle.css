@@ -1,7 +1,4 @@
 @media only screen and (max-width: 1024px){
-    body{
-        filter: brightness(120%);
-    }
     body #nav-container{
         z-index: 200;
         position: fixed;
