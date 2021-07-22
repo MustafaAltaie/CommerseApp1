@@ -1,4 +1,7 @@
 @media only screen and (max-width: 1024px){
+    body{
+        filter: brightness(150%);
+    }
     body #nav-container{
         z-index: 200;
         position: fixed;
@@ -82,13 +85,14 @@
     body #otherSectionContainer{
         height: 1500px;
     }
+
     body #productsSection{
         flex-direction: column;
         min-width: 100%;
     }
     body #productItems{
         width: 100%;
-        height: 1200px;
+        height: 1100px;
     }
     body #productsMenu{
         min-width: 96%;
@@ -153,7 +157,7 @@
     body #contactUsSMediaIcon img{
         width: 70px;
     }
-    body #aboutSection{
+    body #aboutSection, body #chartSection, body #accountSection{
         height: 100%;
     }
     body #aboutSecSmall{
@@ -183,9 +187,6 @@
         font-size: 35px;
     }
 
-    body #chartSection{
-        height: 100%;
-    }
     body #chartSectionSmall{
         flex-direction: column;
     }
@@ -243,9 +244,6 @@
         font-size: 35px;
     }
 
-    body #accountSection{
-        height: 100%;
-    }
     body #logInContainer p{
         font-size: 40px;
     }
