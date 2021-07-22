@@ -1,4 +1,7 @@
 @media only screen and (max-width: 1024px){
+    body{
+        filter: brightness(120%);
+    }
     body #nav-container{
         z-index: 200;
         position: fixed;
@@ -88,7 +91,7 @@
     }
     body #productItems{
         width: 100%;
-        height: 1200px;
+        height: 1100px;
     }
     body #productsMenu{
         min-width: 96%;
