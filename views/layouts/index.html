@@ -334,12 +334,14 @@
             document.getElementById('cart-container').style.right = "10px";
             document.getElementById('cart-container').style.borderRadius = "0 50% 50% 0";
             navBar.style.right = "80px";
+            if(window.matchMedia('(min-width: 1024px)').matches)
             navBar.style.borderRadius = "50px 0 0 50px";
         }
         else if(document.documentElement.scrollTop <= 2){
             document.getElementById('cart-container').style.right = "50px";
             document.getElementById('cart-container').style.borderRadius = "50%";
             navBar.style.right = "200px";
+            if(window.matchMedia('(min-width: 1024px)').matches)
             navBar.style.borderRadius = "50px";
         }
     });
