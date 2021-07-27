@@ -370,6 +370,7 @@ body::-webkit-scrollbar-thumb{
     display: none;
 }
 #logo-container{
+    z-index: 500;
     flex-basis: 45%;
     padding: 10px 0 10px 50px;
 }
