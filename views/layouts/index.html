@@ -103,12 +103,44 @@
                 <p class="employeeInfo" id="employeeInfo7" style="display: none"></p>
             </div>
             <h1>Our Employees</h1>
-            <h3>Don't hesitate to <u style="color: rgb(155, 110, 42); font-weight: bold">contact us</i></h3>
+            <h3>Don't hesitate to <u style="color: rgb(155, 110, 42); font-weight: bold; font-size: 20px">contact us</i></h3>
         </div>
 
 
         <div id="otherSectionContainer">
+            <div id="itemSettings">
+                <p id="editCatigory">Edit Catigory</p>
+                <input id="editCatigoryT" oninput="updateItem('#050', 'Update Info')">
+                <p id="editGender">Edit Gender</p>
+                <input list="mmm" id="editGenderT" oninput="updateItem('#050', 'Update Info')">
+                <datalist id="mmm">
+                    <option value="Man">
+                    <option value="Woman">
+                    <option value="Child">
+                </datalist>
+                <p id="editPrise">Edit Prise</p>
+                <input type="number" id="editPriseT" oninput="updateItem('#050', 'Update Info')">
+                <p id="editImage">Edit Image</p>
+                <input id="editImageT" oninput="updateItem('#050', 'Update Info')">
+                <p id="editText">Edit Description</p>
+                <input id="editTextT" oninput="updateItem('#050', 'Update Info')">
+                <h1 id="deleteItem">Delete</h1>
+            </div>
+
+            {{#each itemList}}
+            <input type="hidden" value="{{this._id}}" class="_idDB">
+            <input type="hidden" value="{{this.catigory}}" class="catigoryDB">
+            <input type="hidden" value="{{this.gender}}" class="genderDB">
+            <input type="hidden" value="{{this.prise}}" class="priseDB">
+            <input type="hidden" value="{{this.imgSrc}}" class="imgSrcDB">
+            <input type="hidden" value="{{this.text}}" class="textDB">
+            {{/each}}
+
             <div class="otherSection" id="productsSection">
+                {{#each priseCheckList}}
+                <input type="hidden" class="_IdPriseDB" value="{{this._id}}">
+                <input type="hidden" class="priseCheckDB" value="{{this.priseCheckbox}}">
+                {{/each}}
                 <div id="productsMenu">
                     <input type="checkbox" checked='true' style="opacity: 0" id="ChildItems">
                     <label for="ChildItems" style="opacity: 0" id="ChildItemsLabel">Child</label><br>
@@ -121,11 +153,6 @@
                     <div id="productsMenueWomanItems" class="productsMenueSmall"></div>
                     <div id="productsMenuePrises">
                         <input type="checkbox" class="priseCheckbox" id="allPrises" checked=true><label for="allPrises">All prises</label><br>
-                        <input type="checkbox" class="priseCheckbox" id="100"><label for="100">Less than 100$</label><br>
-                        <input type="checkbox" class="priseCheckbox" id="200"><label for="200">Less than 200$</label><br>
-                        <input type="checkbox" class="priseCheckbox" id="300"><label for="300">Less than 300$</label><br>
-                        <input type="checkbox" class="priseCheckbox" id="400"><label for="400">Less than 400$</label><br>
-                        <input type="checkbox" class="priseCheckbox" id="1000"><label for="1000">Less than 1000$</label><br>
                     </div>
                 </div>
                 <div id="productItems"></div>
@@ -271,7 +298,7 @@
                 <p>doloremque rem</p>
                 <p>repellat omnis doloremque</p>
             </div>
-            <h2>Copyright 2021 Mustafa Altaie</h2>
+            <h2>Copyright © 2021 Mustafa Altaie</h2>
         </div>
 
         <div id="buyPage">
@@ -560,17 +587,18 @@
         var itemContainer = document.createElement(object.gender + object.catigory);
         itemContainer.className = "item";
         itemContainer.id = object.gender + object.catigory + object.n;
+        itemContainer.idAddress = object.idAddress;
         itemContainer.n = object.n;
         itemContainer.catigory = object.catigory;
         itemContainer.gender = object.gender;
         itemContainer.prise = object.prise;
-        itemContainer.imgSrc = object.imgSrc;
+        itemContainer.imgSrc = "images/products/" + object.imgSrc + ".jpg";
         itemContainer.text = object.text;
             var itemPrise = document.createElement('h1');
             itemPrise.innerHTML = object.prise + "$";
             itemPrise.style.pointerEvents = "none";
             var itemImage = document.createElement('img');
-            itemImage.src = object.imgSrc;
+            itemImage.src = "images/products/" + object.imgSrc + ".jpg";
             itemImage.style.pointerEvents = "none";
             var itemText = document.createElement('p');
             itemText.innerHTML = object.text;
@@ -592,90 +620,21 @@
     }
 
 
-    var item1 = ({
-        n: 1,
-        catigory: 'Watch',
-        gender: 'Man',
-        prise: 50,
-        imgSrc: "images/products/manWatch.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
-    createProjectElements(item1);
-
-    var item1 = ({
-        n: 2,
-        catigory: 'Watch',
-        gender: 'Man',
-        prise: 100,
-        imgSrc: "images/products/manWatch2.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
-    createProjectElements(item1);
-
-    var item1 = ({
-        n: 3,
-        catigory: 'Watch',
-        gender: 'Man',
-        prise: 300,
-        imgSrc: "images/products/manWatch3.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
-    createProjectElements(item1);
-
-    var item1 = ({
-        n: 4,
-        catigory: 'Clothes',
-        gender: 'Woman',
-        prise: 500,
-        imgSrc: "images/products/bhk.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
 
 
-    createProjectElements(item1);
-    var item1 = ({
-        n: 5,
-        catigory: 'Clothes',
-        gender: 'Woman',
-        prise: 1000,
-        imgSrc: "images/products/drgh.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
-    createProjectElements(item1);
 
-
-    var item1 = ({
-        n: 6,
-        catigory: 'Shoes',
-        gender: 'Woman',
-        prise: 500,
-        imgSrc: "images/products/womenShoes.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
-    createProjectElements(item1);
-
-
-    var item1 = ({
-        n: 7,
-        catigory: 'Clothes',
-        gender: 'Man',
-        prise: 200,
-        imgSrc: "images/products/mmmm.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
-    createProjectElements(item1);
-
-
-    var item1 = ({
-        n: 8,
-        catigory: 'Shoes',
-        gender: 'Woman',
-        prise: 300,
-        imgSrc: "images/products/womenShoes2.jpg",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum"
-    });
-    createProjectElements(item1);
-
+    for(i = 0; i < document.getElementsByClassName('_idDB').length; i++){
+        var item1 = ({
+            idAddress: document.getElementsByClassName('_idDB')[i].value,
+            n: i,
+            catigory: document.getElementsByClassName('catigoryDB')[i].value,
+            gender: document.getElementsByClassName('genderDB')[i].value,
+            prise: document.getElementsByClassName('priseDB')[i].value,
+            imgSrc: document.getElementsByClassName('imgSrcDB')[i].value,
+            text: document.getElementsByClassName('textDB')[i].value
+        });
+        createProjectElements(item1);
+    }
 
 
 
@@ -685,6 +644,7 @@
             for(ii = 0; ii < document.getElementsByClassName('priseCheckbox').length; ii++){
                 document.getElementsByClassName('priseCheckbox')[ii].checked = false;
             }
+            allPrises.checked = true;
             var numOfChecks = document.getElementById('productsMenue'+evt.target.id).getElementsByTagName('input').length;
             if(document.getElementById(evt.target.id).checked == true){
                 for(i = 0; i < numOfChecks; i++){
@@ -717,8 +677,8 @@
             document.getElementById(evt.target.id).checked = true;
             if(document.getElementById(evt.target.id).checked == true){
                 for(i = 0; i < document.getElementsByClassName('item').length; i++){
-                    if(document.getElementsByClassName('item')[i].prise > evt.target.id){
-                        document.getElementsByClassName('item')[i].style.display = "none"
+                    if(document.getElementsByClassName('item')[i].prise > parseInt(evt.target.id)){
+                        document.getElementsByClassName('item')[i].style.display = "none";
                     }
                 }
             }
@@ -734,6 +694,7 @@
         for(ii = 0; ii < document.getElementsByClassName('priseCheckbox').length; ii++){
             document.getElementsByClassName('priseCheckbox')[ii].checked = false;
         }
+        allPrises.checked = true;
     }
 
 
@@ -926,6 +887,24 @@
         }
         subTotalText.innerHTML = subtotalPrise + '$';
         totalText.innerHTML = subtotalPrise + '$';
+    }
+
+
+
+
+    for(i = 0; i < document.getElementsByClassName('_IdPriseDB').length; i++){
+        var priseCheck = document.createElement('input');
+        priseCheck.idAddress = document.getElementsByClassName('_IdPriseDB')[i].value;
+        priseCheck.type = "checkbox";
+        priseCheck.className = "priseCheckbox";
+        priseCheck.id = document.getElementsByClassName('priseCheckDB')[i].value;
+            var label = document.createElement('label');
+            label.htmlFor = document.getElementsByClassName('priseCheckDB')[i].value;
+            label.innerHTML = 'Less than or ' + document.getElementsByClassName('priseCheckDB')[i].value + '$';
+            var br = document.createElement('br');
+        productsMenuePrises.appendChild(priseCheck);
+        productsMenuePrises.appendChild(label);
+        productsMenuePrises.appendChild(br);
     }
 
 </script>

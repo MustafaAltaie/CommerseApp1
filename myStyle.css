@@ -107,6 +107,7 @@
     }
     body .item h1{
         font-size: 50px;
+
     }
     body .item img{
         height: 300px;
@@ -266,6 +267,63 @@
         margin: 70px 0;
         border-radius: 90px;
     }
+
+    body #productsMenu h1{
+        z-index: 0;
+        bottom: -200px;
+        right: 0;
+        left: unset;
+        transform: unset;
+        font-size: 40px;
+        border-radius: 10px;
+    }
+
+    body add{
+        padding: 60px 30px 30px 30px;
+        top: 375px;
+        background: rgb(30, 57, 71);
+    }
+
+    body #addImage{
+        font-size: 40px;
+        background: #222;
+        padding: 20px 40px;
+    }
+
+    body #addImageForm{
+        top: 100px;
+    }
+    body #addImageForm input, body #addImageForm button{
+        width: 250px;
+        font-size: 40px;
+    }
+
+    body #productItems::-webkit-scrollbar{
+        display: none;
+    }
+
+    body #addItemForm{
+        width: 900px;
+    }
+    body #addItemForm input, #addItemForm p{
+        padding: 30px 0;
+        font-size: 35px;
+    }
+    body #addItemForm p{
+        padding: 30px 0;
+    }
+
+    body #itemSettings{
+        width: 900px;
+    }
+    body #itemSettings input{
+        font-size: 35px;
+        padding: 30px 0;
+    }
+    body #itemSettings p, body #itemSettings h1{
+        font-size: 35px;
+        padding: 30px 0;
+    }
 }
 
 
@@ -338,7 +396,7 @@ ul a:hover{
     padding: 9px 15px;
     border-radius: 50%;
     background: #111;
-    transition: right 0.5s, border-radius linear 0.7s, filter 0.1s;
+    transition: right 0.5s, border-radius linear 0.7s, filter 0.1s, padding 0.1s;
 }
 #cart-container:hover{
     padding: 5px 15px 13px 15px;
@@ -416,13 +474,13 @@ ul a:hover{
 }
 #homePicContainer{
     display: flex;
-    height: 600px;
+    height: 550px;
 }
 .homePic{
     position: absolute;
     min-width: 100%;
     max-width: 100%;
-    height: 600px;
+    height: 550px;
     object-fit: cover;
     opacity: 0;
     transition: 1s;
@@ -473,7 +531,8 @@ ul a:hover{
     font-size: 50px;
     color: rgb(197, 137, 68);
     background: rgba(0, 0, 0, 0.2);
-    padding: 50px 0;
+    padding: 30px 0;
+    font-family: 'Parisienne', cursive;
 }
 #offerContainer{
     display: flex;
@@ -624,9 +683,40 @@ ul a:hover{
 
 
 #productsSection{
+    position: relative;
     display: flex;
     cursor: default;
     min-width: 800px;
+}
+#addImage{
+    position: absolute;
+    left: 50%;
+    top: -20px;
+    transform: translateX(-50%);
+    font-size: 20px;
+    cursor: pointer;
+    background: #111;
+    color: #fff;
+    font-weight: normal;
+    padding: 5px 20px;
+    border-radius: 0 0 5px 5px;
+}
+#addImageForm{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    top: 20px;
+    text-align: center;
+}
+#addImageForm input, #addImageForm button{
+    width: 150px;
+    padding: 5px 0;
+    text-align: center;
+    border: solid 1px #000;
+    outline: none;
+    margin: 2px;
+    font-weight: bold;
 }
 #productItems{
     width: 80%;
@@ -647,18 +737,62 @@ ul a:hover{
     background: rgb(30, 57, 71);
     border-radius: 20px;
 }
+
 #productsMenu{
+    position: relative;
     background: rgb(30, 57, 71);
     padding: 40px 2%;
     min-width: 16%;
     height: 540px;
     border-radius: 0 30px 30px 0;
 }
+#productsMenu h1{
+    z-index: 300;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: #fff;
+    font-weight: normal;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    font-size: 20px;
+    white-space: nowrap;
+}
+#newPriseCheckForm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+#newPriseCheckForm input, #newPriseCheckForm p{
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    margin: 1px;
+    font-weight: bold;
+}
+#newPriseCheckForm p{
+    background: #111;
+}
+#deletePriseCheck{
+    background: #500;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 5px;
+}
 #productsMenu label{
     margin: 0 30px 0 3px;
-    font-size: 25px;
     font-weight: normal;
     color: #aaa;
+    font-size: 22px;
 }
 .productsMenueSmall{
     margin: 0 0 30px 30px;
@@ -672,14 +806,24 @@ ul a:hover{
 }
 .productsMenueSmall::-webkit-scrollbar-thumb{
     width: 100%;
-    padding: #000 solid 1px;
     border-radius: 5px;
-    background: #aaa;
+    background: #000;
 }
 #productsMenuePrises{
     margin-top: 10px;
     border-top: solid 1px #000;
     padding-top: 20px;
+    max-height: 180px;
+    overflow-y: scroll;
+}
+#productsMenuePrises::-webkit-scrollbar{
+    width: 5px;
+    background: rgba(0, 0, 0, 0.3);
+}
+#productsMenuePrises::-webkit-scrollbar-thumb{
+    width: 100%;
+    background: #000;
+    border-radius: 5px;
 }
 .item{
     width: 200px;
@@ -1238,4 +1382,90 @@ ul a:hover{
     font-weight: normal;
     margin-top: 20px;
     cursor: pointer;
+}
+
+
+
+
+add{
+    position: absolute;
+    font-size: 70px;
+    right: 40px;
+    top: -20px;
+    background: #111;
+    color: #fff;
+    font-weight: normal;
+    padding: 40px 10px 10px 10px;
+    border-radius: 0 0 50px 50px;
+    cursor: pointer;
+}
+
+
+#addItemForm{
+    z-index: 200;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#addItemForm input, #addItemForm p{
+    width: 100%;
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 5px 0;
+    text-align: center;
+    border: solid 1px #000;
+    outline: none;
+    border-radius: 10px;
+}
+#addItemForm p{
+    background: #999;
+    color: #000;
+}
+
+
+
+
+
+#itemSettings{
+    z-index: 500;
+    position: fixed;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+#itemSettings input{
+    font-size: 20px;
+    padding: 20px 0;
+    text-align: center;
+    outline: none;
+    border: none;
+    width: 100%;
+    display: none;
+    background: #111;
+    color: #eee;
+    border-radius: 10px;
+}
+#itemSettings p, #itemSettings h1{
+    font-size: 18px;
+    padding: 20px 0;
+    border: solid 1px #000;
+    text-align: center;
+    outline: none;
+    border-radius: 10px;
+    background: #bbb;
+    color: #000;
+    width: 100%;
+}
+#itemSettings p:hover, #itemSettings h1:hover{
+    background: #fff;
+}
+#itemSettings h1{
+    background: #900;
+    color: white;
+    font-weight: normal;
 }

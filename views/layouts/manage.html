@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Commerce page</title>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Thasadith:ital@1&display=swap" rel="stylesheet">
+        <script src="mustafaButton.js"></script>
+        <link rel="stylesheet" href="myStyle.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    </head>
+
+    <body>
+        <p id="cartNmOfItms">1</p>
+        <div id="nav-container">
+            <div id="logo-container">
+                <img src="images/logo.png" width="150px">
+            </div>
+            <ul id="navBar">
+                <a href="#home" onclick="openOtherSection('home')">Home</a>
+                <a href="#products" onclick="openOtherSection('productsSection')">All products</a>
+                <a href="#contact" onclick="openOtherSection('contactSection')">Contact us</a>
+                <a href="#about" onclick="openOtherSection('aboutSection')">About</a>
+                <a href="#account" onclick="openOtherSection('accountSection')">Account</a>
+            </ul>
+            <div id="cart-container" onclick="openOtherSection('chartSection'); window.location.hash='#Chart'">
+                <img src="images/cart2.png" width="40px">
+                <p id="cartN">1</p>
+            </div>
+        </div>
+
+        <div id="section1">
+            <div id="mainInfoContainer">
+                <h1>Lorem ipsum dolor</h1>
+                <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit</h2>
+                <h3 onclick="openOtherSection('contactSection')">Contact Us</h3>
+            </div>
+            <div id="homePicContainer">
+                <img class="homePic" src="images/homePic1.jpg">
+                <img class="homePic" src="images/homePic2.jpg">
+                <img class="homePic" src="images/homePic3.jpg">
+                <img class="homePic" src="images/homePic4.jpg">
+            </div>
+            <p onclick="swipeTo('right')" id="SwipeRight">></p>
+            <p onclick="swipeTo('left')" id="SwipeLeft"><</p>
+            <div id="channelContainer">
+                <div class="channel" id="channel0"></div>
+                <div class="channel" id="channel1"></div>
+                <div class="channel" id="channel2"></div>
+                <div class="channel" id="channel3"></div>
+            </div>
+        </div>
+
+        <div id="section2">
+            <p id="offerHeader">Our Offers</p>
+            <div id="offerContainer">
+                <div id="offer1" class="offer">
+                    <h1>Lorem ipsum dolor</h1>
+                    <img src="images/offerPic1.jpg">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
+                    <h2>50$</h2>
+                </div>
+                <div id="offer2" class="offer">
+                    <h1>Lorem ipsum dolor</h1>
+                    <img src="images/offerPic2.jpg">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
+                    <h2>50$</h2>
+                </div>
+                <div id="offer3" class="offer">
+                    <h1>Lorem ipsum dolor</h1>
+                    <img src="images/offerPic3.jpg">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
+                    <h2>50$</h2>
+                </div>
+            </div>
+        </div>
+
+        <div id="section3">
+            <div id="employeePicContainer">
+                <div id="employeePicContainerSmall">
+                    <img src="" id="addEmployee" class="employeePic">
+                    <img src="images/employee1.jpg" id="employee1" class="employeePic">
+                    <img src="images/employee2.jpg" id="employee2" class="employeePic">
+                    <img src="images/employee3.jpg" id="employee3" class="employeePic">
+                    <img src="images/employee4.jpg" id="employee4" class="employeePic">
+                    <img src="images/employee5.jpg" id="employee5" class="employeePic">
+                    <img src="images/employee6.jpg" id="employee6" class="employeePic">
+                    <img src="" id="addEmployee" class="employeePic">
+                </div>
+            </div>
+            <div id="employeeInfoContainer">
+                <b id="employeeRight">></b>
+                <b id="employeeLeft"><</b>
+                <p class="employeeInfo" id="employeeInfo0" style="display: none"></p>
+                <p class="employeeInfo" id="employeeInfo1" style="display: none">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
+                <p class="employeeInfo" id="employeeInfo2" style="display: none">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto!</p>
+                <p class="employeeInfo" id="employeeInfo3" style="display: none">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis!</p>
+                <p class="employeeInfo" id="employeeInfo4" style="display: none">4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
+                <p class="employeeInfo" id="employeeInfo5" style="display: none">5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit !doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
+                <p class="employeeInfo" id="employeeInfo6" style="display: none">6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
+                <p class="employeeInfo" id="employeeInfo7" style="display: none"></p>
+            </div>
+            <h1>Our Employees</h1>
+            <h3>Don't hesitate to <u style="color: rgb(155, 110, 42); font-weight: bold; font-size: 20px">contact us</i></h3>
+        </div>
+
+
+        <div id="otherSectionContainer">
+            <div id="itemSettings">
+                <p id="editCatigory">Edit Catigory</p>
+                <input id="editCatigoryT" oninput="updateItem('#050', 'Update Info')">
+                <p id="editGender">Edit Gender</p>
+                <input list="mmm" id="editGenderT" oninput="updateItem('#050', 'Update Info')">
+                <datalist id="mmm">
+                    <option value="Man">
+                    <option value="Woman">
+                    <option value="Child">
+                </datalist>
+                <p id="editPrise">Edit Prise</p>
+                <input type="number" id="editPriseT" oninput="updateItem('#050', 'Update Info')">
+                <p id="editImage">Edit Image</p>
+                <input id="editImageT" oninput="updateItem('#050', 'Update Info')">
+                <p id="editText">Edit Description</p>
+                <input id="editTextT" oninput="updateItem('#050', 'Update Info')">
+                <h1 id="deleteItem">Delete</h1>
+            </div>
+
+            {{#each itemList}}
+            <input type="hidden" value="{{this._id}}" class="_idDB">
+            <input type="hidden" value="{{this.catigory}}" class="catigoryDB">
+            <input type="hidden" value="{{this.gender}}" class="genderDB">
+            <input type="hidden" value="{{this.prise}}" class="priseDB">
+            <input type="hidden" value="{{this.imgSrc}}" class="imgSrcDB">
+            <input type="hidden" value="{{this.text}}" class="textDB">
+            {{/each}}
+
+            <form action="addItem" method="POST" id="addItemForm">
+                <input type="hidden" id="_idText" name="_id" placeholder="_id">
+                <input id="catigoryText" name="catigory" placeholder="catigory">
+                <input list="browsers" id="genderText" name="gender" placeholder="gender">
+                <datalist id="browsers">
+                    <option value="Man">
+                    <option value="Woman">
+                    <option value="Child">
+                </datalist>
+                <input type="number" id="priseText" name="prise" placeholder="prise">
+                <input id="imgSrcText" name="imgSrc" placeholder="imgSrc">
+                <input id="textText" name="text" placeholder="text">
+                <p onclick="addItemF()" id="PText">Add</p>
+                <button id="addItemSubmit" style="display: none"></button>
+            </form>
+
+            <div class="otherSection" id="productsSection">
+                <div id="productsMenu">
+                    <h1 id="newPriseChkH1" onclick="newPriseCheckForm.style.display = 'block'; savePriseCheckP.innerHTML = 'Add'; _idPriseCheck.value = ''; deletePriseCheck.style.display = 'none'">Add new prise</h1>
+
+                    {{#each priseCheckList}}
+                    <input type="hidden" class="_IdPriseDB" value="{{this._id}}">
+                    <input type="hidden" class="priseCheckDB" value="{{this.priseCheckbox}}">
+                    {{/each}}
+
+                    <form action="newPriseCheckbox" method="POST" id="newPriseCheckForm">
+                        <input type="hidden" name="_id" id="_idPriseCheck">
+                        <input type="number" name="priseCheckbox" id="priseCheckbox" min=1 value=100 placeholder="Prise">
+                        <p id="savePriseCheckP">Add</p>
+                        <button id="savePriseCheck" style="display: none"></button>
+                        <h5 id="deletePriseCheck">Delete</h5>
+                    </form>
+
+                    <input type="checkbox" checked='true' style="opacity: 0" id="ChildItems">
+                    <label for="ChildItems" style="opacity: 0" id="ChildItemsLabel">Child</label><br>
+                    <div id="productsMenueChildItems" class="productsMenueSmall"></div>
+                    <input type="checkbox" checked='true' style="opacity: 0" id="ManItems">
+                    <label for="ManItems" style="opacity: 0" id="ManItemsLabel">Man</label><br>
+                    <div id="productsMenueManItems" class="productsMenueSmall"></div>
+                    <input type="checkbox" checked='true' style="opacity: 0" id="WomanItems">
+                    <label for="WomanItems" style="opacity: 0" id="WomanItemsLabel">Woman</label><br>
+                    <div id="productsMenueWomanItems" class="productsMenueSmall"></div>
+                    <div id="productsMenuePrises">
+                        <input type="checkbox" class="priseCheckbox" id="allPrises" checked=true><label for="allPrises">All prises</label><br>
+                    </div>
+                </div>
+                <div id="productItems"></div>
+                <add onclick="openAddItemForm()">+</add>
+                <h4 id="addImage">Upload Image</h4>
+
+                <form id="addImageForm" action="addImage" method="POST" enctype="multipart/form-data">
+                    <input id="browseImage" type="file" name="file" style="display: none">
+                    <input id="addImageName" name="fileName" placeholder="Image Name">
+                    <button style="display: none" id="addImageButton">Upload</button>
+                </form>
+            </div>
+
+            <div class="otherSection" id="contactSection">
+                <div id="contactUsIconContainer">
+                    <div>
+                        <img src="images/location.png">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing eli</p>
+                    </div>
+                    <div style="border-right: solid 2px #b95; border-left: solid 2px #b95">
+                        <img src="images/email.png">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                    <div>
+                        <img src="images/phone.png">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <div id="contactUsInputsContainer">
+                    <input placeholder="Your name" spellcheck="false">
+                    <input placeholder="Your number" spellcheck="false">
+                    <textarea placeholder="Your message" spellcheck="false"></textarea>
+                    <button>Send my message</button>
+                </div>
+                <div id="contactUsSMediaIcon">
+                    <p>Follow us on social media</p>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="images/fb.png">
+                        <img src="images/insta.png">
+                        <img src="images/linkedIn.png">
+                        <img src="images/tweeter.png">
+                    </div>
+                </div>
+            </div>
+
+            <div class="otherSection" id="aboutSection">
+                <div id="aboutSecSmall">
+                    <div id="aboutSecP1">
+                        <h1>About Us</h1>
+                        <h2>Why Us?</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ut odit saepe doloremque eveniet explicabo atque reprehenderit aliquam mollitia harum, maxime hic quas tenetur similique. Facilis aperiam itaque quos minus.</p>
+                        <h2>Who we are?</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ut odit saepe doloremque eveniet explicabo atque reprehenderit aliquam mollitia harum, maxime hic quas tenetur similique. Facilis aperiam itaque quos minus.</p>
+                    </div>
+                    <div id="aboutSecP2">
+                        <h1>Meet the team</h1>
+                        <div id="aboutSecP2Small">
+                            <div>
+                                <img src="images/employee1.jpg">
+                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
+                            </div>
+                            <div>
+                                <img src="images/employee2.jpg">
+                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
+                            </div>
+                            <div>
+                                <img src="images/employee3.jpg">
+                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
+                            </div>
+                            <div>
+                                <img src="images/employee4.jpg">
+                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
+                            </div>
+                            <div>
+                                <img src="images/employee5.jpg">
+                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
+                            </div>
+                            <div>
+                                <img src="images/employee6.jpg">
+                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="otherSection" id="accountSection">
+                <div id="registerContainer">
+                    <p id="logInP" onclick="signIn()">Have an account?</p>
+                    <div id="regInputDiv">
+                        <input id="signInUpName" spellcheck="false" placeholder="Your name">
+                        <input id="signInUpEmail" spellcheck="false" placeholder="Email or number">
+                        <input type="password" id="signInUpPassword" spellcheck="false" placeholder="Your password">
+                        <input type="password" id="signInUpCnfrmPassword" spellcheck="false" placeholder="Confirm your password">
+                        <button id="regSubmit">Sign up</button>
+                    </div>
+                </div>
+                <div id="logInContainer">
+                    <p id="registerP" onclick="signUp()">Don't have an account?</p>
+                    <div id="logInputDiv">
+                        <input id="signInUpEmail" spellcheck="false" placeholder="Email or number">
+                        <input type="password" id="signInUpPassword" spellcheck="false" placeholder="Your password">
+                        <button id="signInSubmit">Sign in</button>
+                        <p style="color: #000; text-align: center; font-weight: bold; cursor: pointer">Forgot your password?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="otherSection" id="chartSection" onclick="window.location.hash='#Chart'">
+                <div id="chartSectionSmall">
+                    <h2 id="emptyCartText">Your cart is empty!</h2>
+                    <div id="chartSectionP1"></div>
+                    <div id="chartSectionP2">
+                        <h1>Order Summary</h1>
+                        <div>
+                            <p id="subTotalText">Subtotal: 0$</p>
+                            <p>Shipping: Free</p>
+                        </div>
+                        <div>
+                            <b id="totalText">TOTAL: 0$</b>
+                        </div>
+                        <button onclick="personalInfo.style.display = 'flex'">CHECK OUT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section4">
+            <div>
+                <img src="images/logo.png" width="150px">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas</p>
+                <section style="display: flex; width: 100%; padding: 20px 0; filter: grayscale(100%)">
+                    <img src="images/fb.png" width = '30px' height = "30px" style="margin: 5px">
+                    <img src="images/insta.png" width = '30px' height = "30px" style="margin: 5px">
+                    <img src="images/linkedIn.png" width = '30px' height = "30px" style="margin: 5px">
+                    <img src="images/tweeter.png" width = '30px' height = "30px" style="margin: 5px">
+                </section>
+            </div>
+            <div>
+                <h1 style="font-size: 25px; color:rgb(155, 110, 42)">repellat omnis</h1>
+                <p>Lorem ipsum dolor sit ametconsectetur. <br> nemo id repellat omnis<br> doloremque rem eos quae <br>officia fuga quam dolores<br> doloribus ad, fugit quas<br>corporis dicta placeat eaque<br> architecto!doloribus ad, fugit quas <br> dicta  eaque architectodoloribus</p>
+            </div>
+            <div>
+                <h1 style="font-size: 25px; color:rgb(155, 110, 42)">repellat omnis</h1>
+                <p>Lorem ipsum</p>
+                <p>ipsum dolor sit ametconsectetur</p>
+                <p>consectetur adipisicing</p>
+                <p>nemo id repellat</p>
+                <p>consectetur adipisicing ept</p>
+                <p>repellat omnis</p>
+                <p>doloremque rem</p>
+                <p>repellat omnis doloremque</p>
+            </div>
+            <h2>Copyright © 2021 Mustafa Altaie</h2>
+        </div>
+
+        <div id="buyPage">
+            <img src="images/products/manWatch3.jpg" id="buyImg">
+            <div>
+                <h1 id="buyPagePrise">99$</h1>
+                <p id="buyPageText">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore accusantium officiis voluptatum, quas, natus eius doloremque blanditiis omnis corrupti recusandae autem officia. Id nam commodi veniam distinctio ex quasi minus?</p>
+                <input id="buyPageInput" type="number" value=1 min=1><br>
+                <i style="background: #050" onclick="checkout()">Check out</i>
+                <i onclick="checkout(); openOtherSection('productsSection')">Continue shopping</i>
+            </div>
+            <h2 onclick="closeBuyPage()">X</h2>
+        </div>
+        
+
+        <div id="personalInfo">
+            <div id="personalInfoForm">
+                <p>Personal Information</p>
+                <input id="clientName" placeholder="Your name" spellcheck="false">
+                <input id="clientNumber" placeholder="Your number" spellcheck="false">
+                <input id="clientEmail" placeholder="Your email" spellcheck="false">
+                <button id="sendOrder">Complete purchase</button>
+                <b onclick="personalInfo.style.display = 'none'">X</b>
+            </div>
+        </div>
+    </body>
+
+
+<script>openOtherSection('productsSection')
+
+    document.addEventListener('scroll', function(){
+        if(document.documentElement.scrollTop > 2){
+            document.getElementById('cart-container').style.right = "10px";
+            document.getElementById('cart-container').style.borderRadius = "0 50% 50% 0";
+            navBar.style.right = "80px";
+            navBar.style.borderRadius = "50px 0 0 50px";
+        }
+        else if(document.documentElement.scrollTop <= 2){
+            document.getElementById('cart-container').style.right = "50px";
+            document.getElementById('cart-container').style.borderRadius = "50%";
+            navBar.style.right = "200px";
+            navBar.style.borderRadius = "50px";
+        }
+    });
+
+
+    document.getElementsByClassName('homePic')[3].style.opacity = 1;
+    document.getElementsByClassName('channel')[3].style.background = "rgb(250, 150, 68)";
+
+
+    var numOfHomePic = document.getElementsByClassName('homePic').length-1;
+
+
+    function setHomePic(n){
+        for(i = 0; i <= numOfHomePic; i++){
+            document.getElementsByClassName('homePic')[i].style.opacity = 0;
+            document.getElementsByClassName('channel')[i].style.background = "#555";
+        }
+        document.getElementsByClassName('homePic')[n].style.opacity = 1;
+        document.getElementsByClassName('channel')[n].style.background = "rgb(250, 150, 68)";
+    }
+
+
+    var swipeToCount = 3;
+
+    function swipeTo(n){
+        if(n == 'right'){
+            swipeToCount++;
+            if(swipeToCount > numOfHomePic){
+                swipeToCount = 0;
+            }
+        }
+        else{
+            swipeToCount--;
+            if(swipeToCount < 0){
+                swipeToCount = numOfHomePic;
+            }
+        }
+        setHomePic(swipeToCount);
+    }
+
+
+    document.getElementById('section1').onclick = function(evt){
+        if(evt.target.className == "channel"){
+            var onlyNumber = evt.target.id.substr(evt.target.id.length-1, evt.target.id.length);
+            swipeToCount = onlyNumber;
+            setHomePic(onlyNumber);
+        }
+    }
+
+
+    function runMustafaBtn(){
+        var btnProperties = ({
+            zIndex: 200,
+            position: 'relative',
+            idName: "navButtonMobile",
+            place: '#nav-container',
+            color: '#aaa',
+            size: 50,
+            top: '0',
+            left: '30%',
+            speed: 0.3
+        });
+        mustafaButton(btnProperties);
+    }
+    runMustafaBtn();
+
+
+    document.addEventListener('click', function(evt){
+        if(evt.target.id == "navButtonMobile"){
+            if(navBar.offsetTop < 0){
+                navBar.style.top = "90px";
+            }
+            else{
+                navBar.style.top = "-500px";
+            }
+        }
+    });
+
+
+
+    var employeeSwipeCount = 1;
+    var EmpSwipeRPerm = 1;
+    var EmpSwipeLPerm = 1;
+
+    if(window.matchMedia("(max-width: 1024px)").matches){
+        employeePicSwipeSize = 268;
+    }
+    else{
+        employeePicSwipeSize = 172;
+    }
+
+
+    function empSwipeSet(n, e){
+        for(i = 0; i <= document.getElementsByClassName('employeePic').length-1; i++){
+            document.getElementsByClassName('employeePic')[i].style.transform += "translateX(" + n + "px)";
+            document.getElementsByClassName('employeePic')[i].style.filter = "grayscale(70%) brightness(50%)";
+            document.getElementsByClassName('employeeInfo')[i].style.display = "none";
+        }
+        document.getElementsByClassName('employeePic')[e+1].style.filter = "grayscale(0%) brightness(100%)";
+        document.getElementsByClassName('employeeInfo')[e+1].style.display = "block";
+    }
+
+    var employeePicSwipeSize;
+    empSwipeSet(-employeePicSwipeSize, 1);
+
+
+
+
+    var currentSwipe = '';
+
+    document.getElementById('section3').onclick = function(evt){
+        if(evt.target.id =="employeeRight" && EmpSwipeRPerm == 1){
+            employeeSwipeCount ++;
+            EmpSwipeLPerm = 1;
+            if(employeeSwipeCount >= document.getElementsByClassName('employeePic').length-3){
+                EmpSwipeRPerm = 0;
+            }
+            empSwipeSet(-employeePicSwipeSize, employeeSwipeCount);
+            currentSwipe = '';
+        }
+        else if(evt.target.id =="employeeLeft" && EmpSwipeLPerm == 1){
+            if(employeeSwipeCount <= 1){
+                EmpSwipeLPerm = 0;
+            }
+            employeeSwipeCount--;
+            EmpSwipeRPerm = 1;
+            empSwipeSet(employeePicSwipeSize, employeeSwipeCount);
+            currentSwipe = '';
+        }
+
+        if(evt.target.className == "employeePic" && evt.target.id== "addEmployee"){
+            alert()
+        }
+
+        if(evt.target.id.substr(0, evt.target.id.length-1) == "employee"){
+            if(evt.target.id != currentSwipe){
+                currentSwipe = evt.target.id;
+                if(event.clientX > document.documentElement.clientWidth/2+employee1.offsetWidth/2+employee1.style.margin){
+                    employeeSwipeCount ++;
+                    EmpSwipeLPerm = 1;
+                    if(employeeSwipeCount >= document.getElementsByClassName('employeePic').length-3){
+                        EmpSwipeRPerm = 0;
+                    }
+                    empSwipeSet(-employeePicSwipeSize, employeeSwipeCount);
+                }
+                else if(event.clientX < document.documentElement.clientWidth/2-employee1.offsetWidth/2-employee1.style.margin){
+                    if(employeeSwipeCount <= 1){
+                        EmpSwipeLPerm = 0;
+                    }
+                    employeeSwipeCount--;
+                    EmpSwipeRPerm = 1;
+                    empSwipeSet(employeePicSwipeSize, employeeSwipeCount);
+                }
+            }
+        }
+    }
+
+
+
+    function openOtherSection(n){
+        if(n != "home"){
+            var otherSectLngth = document.getElementsByClassName('otherSection').length;
+            for(i = 0; i <= otherSectLngth-1; i++){
+                document.getElementsByClassName('otherSection')[i].style.display = "none";
+            }
+            document.getElementById('otherSectionContainer').style.display = "block";
+            document.getElementById(n).style.display = "block";
+            if(n == "productsSection")
+                document.getElementById('productsSection').style.display = "flex";
+            var heightDifferent = document.documentElement.clientHeight - document.getElementById(n).offsetHeight;
+            window.scroll({
+                top: document.getElementById(n).offsetTop - heightDifferent/2,
+                behavior: 'smooth'
+            });
+            emptyCartOrNo();
+        }
+        else{
+            document.getElementById('otherSectionContainer').style.display = "none";
+            var otherSectLngth = document.getElementsByClassName('otherSection').length;
+            for(i = 0; i <= otherSectLngth-1; i++){
+                document.getElementsByClassName('otherSection')[i].style.display = "none";
+            }
+            window.scroll({top: 0, behavior: 'smooth'});
+        }
+    }
+
+
+
+
+    function signUp(){
+        logInContainer.style.pointerEvents = "none";
+        logInContainer.style.left = registerContainer.offsetLeft + registerContainer.offsetWidth + 10 + 'px';
+        setTimeout(function(){
+            logInContainer.style.zIndex = "10";
+            logInContainer.style.left = registerContainer.offsetLeft + registerContainer.offsetWidth/8 + 'px';
+        }, 500);
+        setTimeout(function(){
+            registerContainer.style.pointerEvents = "unset";
+        }, 1000)
+    }
+
+    function signIn(){
+        registerContainer.style.pointerEvents = "none";
+        logInContainer.style.zIndex = "100";
+        logInContainer.style.left = registerContainer.offsetLeft + registerContainer.offsetWidth + 10 + 'px';
+        setTimeout(function(){
+            logInContainer.style.left = "50%";
+        }, 500);
+        setTimeout(function(){
+            logInContainer.style.pointerEvents = "unset";
+        }, 1000)
+    }
+
+
+
+
+    // ----------------------------- Products -----------------------------
+
+
+    function createCheckbox(n){
+        var lngth2 = document.getElementsByTagName(n.gender + n.catigory).length;
+        if(lngth2 <= 1){
+            var checkBox = document.createElement('input');
+            checkBox.type = "checkbox";
+            checkBox.className = "itemCheck" + n.gender + "Items";
+            checkBox.id = n.gender + n.catigory;
+            checkBox.checked = true;
+                var label = document.createElement('label');
+                label.id = n.gender + n.catigory;
+                label.htmlFor = n.gender + n.catigory;
+                label.innerHTML = n.catigory;
+
+            var br = document.createElement('br');
+
+            document.getElementById('productsMenue' + n.gender + 'Items').appendChild(checkBox);
+            document.getElementById('productsMenue' + n.gender + 'Items').appendChild(label);
+            document.getElementById('productsMenue' + n.gender + 'Items').appendChild(br);
+        }
+    }
+
+
+
+
+    function createProjectElements(object){
+        var itemContainer = document.createElement(object.gender + object.catigory);
+        itemContainer.className = "item";
+        itemContainer.id = object.gender + object.catigory + object.n;
+        itemContainer.idAddress = object.idAddress;
+        itemContainer.n = object.n;
+        itemContainer.catigory = object.catigory;
+        itemContainer.gender = object.gender;
+        itemContainer.prise = object.prise;
+        itemContainer.imgSrc = "images/products/" + object.imgSrc + ".jpg";
+        itemContainer.text = object.text;
+            var itemPrise = document.createElement('h1');
+            itemPrise.innerHTML = object.prise + "$";
+            itemPrise.style.pointerEvents = "none";
+            var itemImage = document.createElement('img');
+            itemImage.src = "images/products/" + object.imgSrc + ".jpg";
+            itemImage.style.pointerEvents = "none";
+            var itemText = document.createElement('p');
+            itemText.innerHTML = object.text;
+            itemText.style.pointerEvents = "none";
+            var itemBuyNow = document.createElement('i');
+            itemBuyNow.innerHTML = "Buy Now";
+            itemBuyNow.id = "buyButton";
+            itemBuyNow.className = object.gender + object.catigory + object.n;
+        itemContainer.appendChild(itemPrise);
+        itemContainer.appendChild(itemImage);
+        itemContainer.appendChild(itemText);
+        itemContainer.appendChild(itemBuyNow);
+        document.getElementById('productItems').appendChild(itemContainer);
+        var checkbox = ({
+            catigory: object.catigory,
+            gender: object.gender
+        });
+        createCheckbox(checkbox);
+    }
+
+
+
+
+
+    for(i = 0; i < document.getElementsByClassName('_idDB').length; i++){
+        var item1 = ({
+            idAddress: document.getElementsByClassName('_idDB')[i].value,
+            n: i,
+            catigory: document.getElementsByClassName('catigoryDB')[i].value,
+            gender: document.getElementsByClassName('genderDB')[i].value,
+            prise: document.getElementsByClassName('priseDB')[i].value,
+            imgSrc: document.getElementsByClassName('imgSrcDB')[i].value,
+            text: document.getElementsByClassName('textDB')[i].value
+        });
+        createProjectElements(item1);
+    }
+
+
+
+
+    document.getElementById('productsMenu').onchange = function(evt){
+        if(evt.target.id.substr(evt.target.id.length-5, evt.target.id.length) == "Items"){
+            for(ii = 0; ii < document.getElementsByClassName('priseCheckbox').length; ii++){
+                document.getElementsByClassName('priseCheckbox')[ii].checked = false;
+            }
+            allPrises.checked = true;
+            var numOfChecks = document.getElementById('productsMenue'+evt.target.id).getElementsByTagName('input').length;
+            if(document.getElementById(evt.target.id).checked == true){
+                for(i = 0; i < numOfChecks; i++){
+                    document.getElementById('productsMenue'+evt.target.id).getElementsByTagName('input')[i].checked = true;
+                }
+            }
+            else{
+                for(i = 0; i < numOfChecks; i++){
+                    document.getElementById('productsMenue'+evt.target.id).getElementsByTagName('input')[i].checked = false;
+                }
+            }
+        }
+        if(evt.target.className.substr(0, 9) == "itemCheck"){
+            var lngth = document.getElementsByClassName(evt.target.className).length;
+            for(i = 0; i < lngth; i++){
+                if(document.getElementsByClassName(evt.target.className)[i].checked == true){
+                    choseCheckBox(evt.target.className.substr(9, evt.target.className.length), true);
+                    break;
+                }
+                else{
+                    choseCheckBox(evt.target.className.substr(9, evt.target.className.length), false);
+                }
+            }
+        }
+        choseItem();
+        if(evt.target.className == "priseCheckbox"){
+            for(ii = 0; ii < document.getElementsByClassName('priseCheckbox').length; ii++){
+                document.getElementsByClassName('priseCheckbox')[ii].checked = false;
+            }
+            document.getElementById(evt.target.id).checked = true;
+            if(document.getElementById(evt.target.id).checked == true){
+                for(i = 0; i < document.getElementsByClassName('item').length; i++){
+                    if(document.getElementsByClassName('item')[i].prise > parseInt(evt.target.id)){
+                        document.getElementsByClassName('item')[i].style.display = "none";
+                    }
+                }
+            }
+            else{
+                choseItem();
+            }
+        }
+    }
+
+
+    function choseCheckBox(itm, prprty){
+        document.getElementById(itm).checked = prprty;
+        for(ii = 0; ii < document.getElementsByClassName('priseCheckbox').length; ii++){
+            document.getElementsByClassName('priseCheckbox')[ii].checked = false;
+        }
+        allPrises.checked = true;
+    }
+
+
+
+    function choseItem(){
+        var nmOfCheck = document.getElementById('productsMenu').getElementsByTagName('input').length;
+        var chk = document.getElementById('productsMenu').getElementsByTagName('input');
+        for(ii = 0; ii < nmOfCheck; ii++){
+            if(chk[ii].className.substr(0, 9) == "itemCheck"){
+                if(chk[ii].checked == true){
+                    for(iii = 0; iii < document.getElementsByTagName(chk[ii].id).length; iii++){
+                        document.getElementsByTagName(chk[ii].id)[iii].style.display = "block"
+                    }
+                }
+                else{
+                    for(iii = 0; iii < document.getElementsByTagName(chk[ii].id).length; iii++){
+                        document.getElementsByTagName(chk[ii].id)[iii].style.display = "none"
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    function setCheckPointerEvnts(){
+        for(i = 0; i < document.getElementsByClassName('item').length; i++){
+            if(document.getElementsByClassName('item')[i].gender == "Man"){
+                document.getElementById('ManItems').style.opacity = 1;
+                document.getElementById('ManItemsLabel').style.opacity = 1;
+            }
+            if(document.getElementsByClassName('item')[i].gender == "Woman"){
+                document.getElementById('WomanItems').style.opacity = 1;
+                document.getElementById('WomanItemsLabel').style.opacity = 1;
+            }
+            if(document.getElementsByClassName('item')[i].gender == "Child"){
+                document.getElementById('ChildItems').style.opacity = 1;
+                document.getElementById('ChildItemsLabel').style.opacity = 1;
+            }
+        }
+    }
+    setCheckPointerEvnts();
+
+
+    function closeBuyPage(){
+        buyPage.style.display = "none";
+        buyPageInput.value = 1;
+    }
+    
+
+    function buyItem(n){
+        buyPage.style.display = "flex";
+        buyImg.src = n.image;
+        buyPageText.innerHTML = n.text;
+        buyPagePrise.innerHTML = n.prise + '$';
+        currentPrise = n.prise;
+    }
+
+    document.addEventListener('click', function(evt){
+        if(evt.target.id == "buyButton"){
+            var itemToBuy = ({
+                image: document.getElementById(evt.target.className).imgSrc,
+                text: document.getElementById(evt.target.className).text,
+                prise: document.getElementById(evt.target.className).prise
+            });
+            buyItem(itemToBuy);
+        }
+        if(evt.target.id.substr(0, 5) == "close"){
+            document.getElementById('cartItem'+evt.target.id.substr(5, evt.target.id.length)).remove();
+            showHideCartNm();
+            subTotal();
+            emptyCartOrNo();
+        }
+    });
+
+
+
+    var cartNumMovPerm = 1;
+
+    function showHideCartNm(){
+        if(cartNumMovPerm == 1){
+            cartNumMovPerm = 0;
+            cartNmOfItms.style.zIndex = 400;
+            cartNmOfItms.style.display = "block";
+            cartNmOfItms.style.top = document.getElementById('cart-container').offsetTop + 48 + "px";
+            cartNmOfItms.style.left = document.getElementById('cart-container').offsetLeft + 25 + "px";
+            cartNmOfItms.style.width = "25px";
+            cartNmOfItms.style.height = "25px";
+            setTimeout(function(){
+                cartNmOfItms.style.display = "none";
+                cartN.style.display = "block";
+            }, 500);
+        }
+        else cartN.style.display = "block";
+        cartN.innerHTML = document.getElementsByClassName('cartItem').length;
+        if(document.getElementsByClassName('cartItem').length < 1)
+        cartN.style.display = "none";
+    }
+
+
+
+    var currentPrise = 0;
+
+    document.getElementById('buyPageInput').oninput = function(){
+        buyPagePrise.innerHTML = currentPrise * buyPageInput.value + '$';
+    }
+
+
+    function checkout(){
+        openOtherSection('chartSection');
+        window.location.hash='#Chart';
+        var itm = ({
+            image: buyImg.src,
+            prise: buyPagePrise.innerHTML,
+            number: buyPageInput.value,
+            text: buyPageText.innerHTML
+        });
+        itemToCart(itm);
+        closeBuyPage();
+        subTotal();
+        emptyCartOrNo();
+    }
+
+
+
+    function emptyCartOrNo(){
+        if(document.getElementsByClassName('cartItem').length > 0){
+            emptyCartText.style.display = "none";
+            chartSectionP2.style.display = "block";
+        }
+        else{
+            emptyCartText.style.display = "block";
+            chartSectionP2.style.display = "none";
+        }
+        
+    }
+
+
+
+    var cartCounter = 0;
+
+    function itemToCart(itm){
+        var mainDiv = document.createElement('div');
+        mainDiv.id = "cartItem" + cartCounter;
+        mainDiv.className = "cartItem";
+            var img = document.createElement('img');
+            img.src = itm.image;
+            var prs = document.createElement('p');
+            prs.id = "itemPriseInCart" + cartCounter;
+            prs.innerHTML = itm.prise;
+            var input = document.createElement('input');
+            input.id = "input" + cartCounter;
+            input.type = "number";
+            input.value = itm.number;
+            input.min = 1;
+            var i = document.createElement('i');
+            i.innerHTML = itm.text;
+            var close = document.createElement('b');
+            close.innerHTML = "X";
+            close.id = "close" + cartCounter;
+        mainDiv.originalPrise = itm.prise.substr(0, itm.prise.length-1) / itm.number;
+        mainDiv.appendChild(img);
+        mainDiv.appendChild(prs);
+        mainDiv.appendChild(input);
+        mainDiv.appendChild(i);
+        mainDiv.appendChild(close);
+        chartSectionP1.appendChild(mainDiv);
+        showHideCartNm();
+        cartCounter++;
+    }
+
+    document.addEventListener('input', function(evt){
+        if(evt.target.id.substr(0, 5) == "input"){
+            var onlyNm = evt.target.id.substr(5, evt.target.id.length);
+            var newPrise = document.getElementById("cartItem" + onlyNm).originalPrise * document.getElementById(evt.target.id).value;
+            document.getElementById("itemPriseInCart" + onlyNm).innerHTML = newPrise + "$";
+            document.getElementById("cartItem" + onlyNm).finalPrise = newPrise;
+            subTotal();
+        }
+    });
+
+
+    var subtotalPrise = 0;
+
+    function subTotal(){
+        subtotalPrise = 0;
+        for(i = 0; i < document.getElementsByClassName('cartItem').length; i++){
+            var prs = document.getElementsByClassName('cartItem')[i].getElementsByTagName('p')[0].innerHTML;
+            subtotalPrise = subtotalPrise + parseInt(prs.substr(0, prs.length-1));
+        }
+        subTotalText.innerHTML = subtotalPrise + '$';
+        totalText.innerHTML = subtotalPrise + '$';
+    }
+
+
+
+    function openAddItemForm(){
+        addItemForm.style.display = "flex";
+        addItemForm.style.top = productsSection.offsetTop + productsSection.offsetHeight/2 - addItemForm.offsetHeight/2 + 'px'
+    }
+
+
+   function addItemF(){
+        if(catigoryText.value != "" && genderText.value != ""
+        && priseText.value != "" && textText.value != ""){
+            if(genderText.value != "Man"
+            && genderText.value != "Woman"
+            && genderText.value != "Child"){
+                alert('Gender can be either Man, Woman or Child');
+                genderText.value = "";
+            }
+            else{
+                addItemForm.style.display = "none";
+                addItemSubmit.click();
+            }
+        }
+        else
+        alert('Fill all the texts');
+   }
+
+
+
+
+   var currentIdAddress = "";
+   var currentId = "";
+
+    document.addEventListener('mousedown', function(evt){
+        if(evt.target.id.substr(0, 4) != "edit" && evt.target.id.substr(0, 4) != "dele"){
+            itemSettings.style.display = "none";
+            updateItem('#900', 'Delete');
+            for(i = 0; i < document.getElementById('itemSettings').getElementsByTagName('input').length; i++){
+                document.getElementById('itemSettings').getElementsByTagName('input')[i].style.display = "none";
+            }
+        }
+        if(evt.target.idAddress != "" && evt.target.idAddress != undefined){
+            itemSettings.style.display = "block";
+            addItemForm.style.display = "none";
+            currentIdAddress = evt.target.idAddress;
+            currentId = evt.target.id;
+            var imgSrc1 = document.getElementById(evt.target.id).imgSrc.substr(0, document.getElementById(evt.target.id).imgSrc.length-4);
+            var imgSrc2 = imgSrc1.substr(16, imgSrc1.length);
+            editCatigoryT.value = document.getElementById(evt.target.id).catigory;
+            editGenderT.value = document.getElementById(evt.target.id).gender;
+            editPriseT.value = document.getElementById(evt.target.id).prise;
+            editImageT.value = imgSrc2;
+            editTextT.value = document.getElementById(evt.target.id).text;
+        }
+        if(evt.target.id == "deleteItem"){
+            if(deleteItem.innerHTML == "Delete"){
+                itemSettings.style.display = "none";
+                window.location.href = "/deleteItem/" + currentIdAddress;
+            }
+            else{
+                _idText.value = currentIdAddress;
+                catigoryText.value = editCatigoryT.value;
+                genderText.value = editGenderT.value;
+                priseText.value = editPriseT.value;
+                imgSrcText.value = editImageT.value;
+                textText.value = editTextT.value;
+                if(catigoryText.value != "" && genderText.value != "" && priseText.value !=""
+                && imgSrcText.value != "" && textText.value != ""){
+                    if(editGenderT.value == "Man"
+                    || editGenderT.value == "Woman"
+                    || editGenderT.value == "Child"){
+                        itemSettings.style.display = "none";
+                        addItemSubmit.click();
+                    }
+                    else{
+                        alert('Gender can be either Man, Woman or Child');
+                        for(i = 0; i < document.getElementById('itemSettings').getElementsByTagName('input').length; i++){
+                            document.getElementById('itemSettings').getElementsByTagName('input')[i].style.display = "none";
+                        }
+                        editGenderT.style.display = "block";
+                        editGenderT.value = "";
+                    }
+                }
+            }
+        }
+        if(evt.target.id.substr(0, 4) == "edit"
+        && evt.target.tagName == "P"){
+            for(i = 0; i < document.getElementById('itemSettings').getElementsByTagName('input').length; i++){
+                document.getElementById('itemSettings').getElementsByTagName('input')[i].style.display = "none";
+            }
+            document.getElementById(evt.target.id+"T").style.display = "block";
+        }
+
+        if(evt.target.id.substr(evt.target.id.length-4, evt.target.id.length) != "Text"){
+            addItemForm.style.display = "none";
+        }
+    });
+
+
+
+    function updateItem(color, text){
+        deleteItem.style.background = color;
+        deleteItem.innerHTML = text;
+    }
+
+
+
+
+    for(i = 0; i < document.getElementsByClassName('_IdPriseDB').length; i++){
+        var priseCheck = document.createElement('input');
+        priseCheck.idAddress = document.getElementsByClassName('_IdPriseDB')[i].value;
+        priseCheck.prise = document.getElementsByClassName('priseCheckDB')[i].value;
+        priseCheck.type = "checkbox";
+        priseCheck.className = "priseCheckbox";
+        priseCheck.id = document.getElementsByClassName('priseCheckDB')[i].value;
+            var label = document.createElement('label');
+            label.htmlFor = document.getElementsByClassName('priseCheckDB')[i].value;
+            label.innerHTML = 'Less than or ' + document.getElementsByClassName('priseCheckDB')[i].value + '$';
+            var br = document.createElement('br');
+        productsMenuePrises.appendChild(priseCheck);
+        productsMenuePrises.appendChild(label);
+        productsMenuePrises.appendChild(br);
+    }
+
+
+
+    document.getElementById('savePriseCheckP').onclick = function(evt){
+        if(priseCheckbox.value != "")
+        savePriseCheck.click();
+        else
+        alert('Prise chould be more than 1');
+    }
+
+    document.getElementById('productsSection').onclick = function(evt){
+        if(evt.target.id != "priseCheckbox"
+        && evt.target.id != "savePriseCheckP"
+        && evt.target.id != "deletePriseCheck"
+        && evt.target.id != "newPriseChkH1"){
+            newPriseCheckForm.style.display = 'none';
+        }
+        if(evt.target.idAddress != undefined && evt.target.tagName == "INPUT"){
+            newPriseCheckForm.style.display = 'block';
+            _idPriseCheck.value = evt.target.idAddress;
+            priseCheckbox.value = evt.target.prise;
+            savePriseCheckP.innerHTML = "Update";
+            deletePriseCheck.style.display = "block";
+        }
+        if(evt.target.id == "deletePriseCheck"){
+            newPriseCheckForm.style.display = 'none';
+            window.location.href = '/deletePriseCheck/' + _idPriseCheck.value;
+        }
+        if(evt.target.id != "browseImage"
+        && evt.target.id != "addImage"
+        && evt.target.id != "addImageName"){
+            addImageForm.style.display = "none";
+            addImageButton.style.display = "none";
+        }
+    }
+
+
+
+    document.getElementById('addImage').onclick = function(){
+        addImageForm.style.display = "block";
+        browseImage.click();
+    }
+
+
+    document.getElementById('addImageName').oninput = function(){
+        if(addImageName.value != "")
+        addImageButton.style.display = "block";
+        else
+        addImageButton.style.display = "none";
+    }
+
+
+    // function fetch(){
+    //     $.ajax({
+    //         url: "/addItem",
+    //         method: 'POST',
+    //         contentType: 'application/json',
+    //         data: {
+    //             catigory: 'cxfhbdfxhg',
+    //             gender: 'dfhggdf',
+    //             prise: 'dfghdfg',
+    //             imgSrc: 'fgdfg',
+    //             text: 'dfhgdf'
+    //         },
+    //         success: function(data){
+    //             alert("hi");
+    //         },
+    //         error: function(xhr, status, error){
+    //             alert("hii");
+    //         }
+    //     });
+    // }
+
+
+</script>
+
+</html>
