@@ -324,6 +324,15 @@
         font-size: 35px;
         padding: 30px 0;
     }
+
+    body #newPriseCheckForm{
+        top: 130%;
+    }
+    body #newPriseCheckForm input, body #newPriseCheckForm p, body #deletePriseCheck{
+        width: 500px;
+        padding: 25px;
+        font-size: 35px;
+    }
 }
 
 
