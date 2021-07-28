@@ -418,6 +418,14 @@
                 navBar.style.top = "-500px";
             }
         }
+        else{
+            if(window.matchMedia('(max-width: 1024px)').matches){
+                if(navBar.offsetTop > 0){
+                    navBar.style.top = "-500px";
+                    navButtonMobile.click();
+                }
+            }
+        }
     });
 
 

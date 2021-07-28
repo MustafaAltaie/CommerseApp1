@@ -454,8 +454,12 @@
             }
         }
         else{
-            navBar.style.top = "-500px";
-            navButtonMobile.click();
+            if(window.matchMedia('(max-width: 1024px)').matches){
+                if(navBar.offsetTop > 0){
+                    navBar.style.top = "-500px";
+                    navButtonMobile.click();
+                }
+            }
         }
     });
 
@@ -551,8 +555,14 @@
             if(n == "productsSection")
                 document.getElementById('productsSection').style.display = "flex";
             var heightDifferent = document.documentElement.clientHeight - document.getElementById(n).offsetHeight;
+            if(window.matchMedia("(min-width: 1024px)").matches)
             window.scroll({
                 top: document.getElementById(n).offsetTop - heightDifferent/2,
+                behavior: 'smooth'
+            });
+            else
+            window.scroll({
+                top: document.getElementById(n).offsetTop - heightDifferent/2 - document.getElementById('nav-container').offsetHeight/2,
                 behavior: 'smooth'
             });
             emptyCartOrNo();
@@ -970,7 +980,7 @@
                 document.getElementById('itemSettings').getElementsByTagName('input')[i].style.display = "none";
             }
         }
-        if(evt.target.idAddress != "" && evt.target.idAddress != undefined){
+        if(evt.target.idAddress != undefined && evt.target.tagName != "INPUT"){
             itemSettings.style.display = "block";
             addItemForm.style.display = "none";
             currentIdAddress = evt.target.idAddress;
@@ -1062,6 +1072,8 @@
         alert('Prise chould be more than 1');
     }
 
+
+
     document.getElementById('productsSection').onclick = function(evt){
         if(evt.target.id != "priseCheckbox"
         && evt.target.id != "savePriseCheckP"
@@ -1070,6 +1082,7 @@
             newPriseCheckForm.style.display = 'none';
         }
         if(evt.target.idAddress != undefined && evt.target.tagName == "INPUT"){
+            itemSettings.style.display = "none";
             newPriseCheckForm.style.display = 'block';
             _idPriseCheck.value = evt.target.idAddress;
             priseCheckbox.value = evt.target.prise;
