@@ -4,6 +4,13 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Item = mongoose.model('item');
 const PriseCheck = mongoose.model('priseOption');
+const fs = require('fs');
+
+var mainPicNumber = 0;
+
+fs.readdir('./images/MainPics/', (err, files) => {
+    mainPicNumber = files.length;
+});
 
 router.get('/', function(req, res){
     PriseCheck.find(function(err, data2){
@@ -11,7 +18,8 @@ router.get('/', function(req, res){
             if(!err){
                 res.render('./layouts/index', {
                     itemList: data,
-                    priseCheckList: data2
+                    priseCheckList: data2,
+                    mainPicNum: mainPicNumber
                 });
             }
         }).lean();
@@ -24,7 +32,8 @@ router.get('/manage', function(req, res){
             if(!err){
                 res.render('./layouts/manage', {
                     itemList: data,
-                    priseCheckList: data2
+                    priseCheckList: data2,
+                    mainPicNum: mainPicNumber
                 });
             }
         }).lean();

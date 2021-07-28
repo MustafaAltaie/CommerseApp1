@@ -4,6 +4,7 @@ const bodyP = require('body-parser');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 const controllers = require('./controllers/controllers');
+const fs = require('fs');
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -19,6 +20,20 @@ app.post('/addImage/', function(req, res){
     var file = req.files.file;
     var fileName = req.body.fileName;
     file.mv('images/products/' + fileName + '.jpg', function(err){
+        if(!err) res.redirect('/manage');
+    });
+});
+
+
+var mainPicNumber = 0;
+
+fs.readdir('./images/MainPics/', (err, files) => {
+    mainPicNumber = files.length;
+});
+
+app.post('/uploadMainPic/', function(req, res){
+    var file = req.files.file;
+    file.mv('images/MainPics/homePic' + parseInt(mainPicNumber+1) + '.jpg', function(err){
         if(!err) res.redirect('/manage');
     });
 });
