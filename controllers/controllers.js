@@ -90,4 +90,11 @@ router.get('/deletePriseCheck/:id', function(req, res){
     });
 });
 
+
+router.get('/deleteMainPic/:n/:n2', function(req, res){
+    fs.unlink("images/MainPics/homePic" + req.params.n + ".jpg", function(){});
+    if(req.params.n != req.params.n2)
+    fs.renameSync('images/MainPics/homePic' + req.params.n2 + '.jpg', 'images/MainPics/homePic' + req.params.n + '.jpg');
+});
+
 module.exports = router;

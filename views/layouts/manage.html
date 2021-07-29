@@ -32,12 +32,13 @@
         </div>
 
         <input type="hidden" value="{{mainPicNum}}" id="mainPicNum">
+        <button onclick="deleteHomePic()" id="deleteHomePicB">Delete this image</button>
 
         <div id="section1">
             <form action="uploadMainPic" method="POST" enctype="multipart/form-data" id="mainPicUploadForm">
                 <input type="file" name="file" id="mainPicPic" style="display: none">
                 <p id="uploadMainPicP">Upload Image</p>
-                <button id="uploadMainPicB"></button>
+                <button style="display: none" id="uploadMainPicB"></button>
             </form>
 
             <div id="mainInfoContainer">
@@ -380,14 +381,23 @@
     });
 
 
+    function deleteHomePic(){
+        window.location.href = '/deleteMainPic/' + currentMainPicN + "/" + mainPicNum.value;
+        setTimeout(function(){
+            window.location.reload();
+        }, 1000);
+    }
+
+    var currentMainPic;
+    var currentMainPicN;
 
     for(i = 0; i < mainPicNum.value; i++){
         var homePicc = document.createElement('img');
         homePicc.className = "homePic";
+        homePicc.fineName = "homePic" + parseInt(i+1);
         homePicc.src = "images/MainPics/homePic" + parseInt(i+1) + ".jpg";
         homePicContainer.appendChild(homePicc);
     }
-
 
     for(i = 0; i < mainPicNum.value; i++){
         var channell = document.createElement('div');
@@ -397,9 +407,7 @@
     }
 
 
-    document.getElementsByClassName('homePic')[3].style.opacity = 1;
-    document.getElementsByClassName('channel')[3].style.background = "rgb(250, 150, 68)";
-
+    setHomePic(0);
 
     var numOfHomePic = document.getElementsByClassName('homePic').length-1;
 
@@ -410,6 +418,8 @@
             document.getElementsByClassName('channel')[i].style.background = "#555";
         }
         document.getElementsByClassName('homePic')[n].style.opacity = 1;
+        currentMainPic = document.getElementsByClassName('homePic')[n].fineName;
+        currentMainPicN = currentMainPic.substr(7, currentMainPic.length);
         document.getElementsByClassName('channel')[n].style.background = "rgb(250, 150, 68)";
     }
 
@@ -435,7 +445,7 @@
 
     document.getElementById('section1').onclick = function(evt){
         if(evt.target.className == "channel"){
-            var onlyNumber = evt.target.id.substr(evt.target.id.length-1, evt.target.id.length);
+            var onlyNumber = evt.target.id.substr(7, evt.target.id.length);
             swipeToCount = onlyNumber;
             setHomePic(onlyNumber);
         }
