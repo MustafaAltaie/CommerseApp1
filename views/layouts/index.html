@@ -31,26 +31,18 @@
             </div>
         </div>
 
+        <input type="hidden" value="{{mainPicNum}}" id="mainPicNum">
+
         <div id="section1">
             <div id="mainInfoContainer">
                 <h1>Lorem ipsum dolor</h1>
                 <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit</h2>
                 <h3 onclick="openOtherSection('contactSection')">Contact Us</h3>
             </div>
-            <div id="homePicContainer">
-                <img class="homePic" src="images/homePic1.jpg">
-                <img class="homePic" src="images/homePic2.jpg">
-                <img class="homePic" src="images/homePic3.jpg">
-                <img class="homePic" src="images/homePic4.jpg">
-            </div>
+            <div id="homePicContainer"></div>
             <p onclick="swipeTo('right')" id="SwipeRight">></p>
             <p onclick="swipeTo('left')" id="SwipeLeft"><</p>
-            <div id="channelContainer">
-                <div class="channel" id="channel0"></div>
-                <div class="channel" id="channel1"></div>
-                <div class="channel" id="channel2"></div>
-                <div class="channel" id="channel3"></div>
-            </div>
+            <div id="channelContainer"></div>
         </div>
 
         <div id="section2">
@@ -347,8 +339,22 @@
     });
 
 
-    document.getElementsByClassName('homePic')[3].style.opacity = 1;
-    document.getElementsByClassName('channel')[3].style.background = "rgb(250, 150, 68)";
+    for(i = 0; i < mainPicNum.value; i++){
+        var homePicc = document.createElement('img');
+        homePicc.className = "homePic";
+        homePicc.fineName = "homePic" + parseInt(i+1);
+        homePicc.src = "images/MainPics/homePic" + parseInt(i+1) + ".jpg";
+        homePicContainer.appendChild(homePicc);
+    }
+
+    for(i = 0; i < mainPicNum.value; i++){
+        var channell = document.createElement('div');
+        channell.className = "channel";
+        channell.id = "channel" + i;
+        channelContainer.appendChild(channell);
+    }
+
+    setHomePic(0);
 
 
     var numOfHomePic = document.getElementsByClassName('homePic').length-1;
@@ -364,7 +370,7 @@
     }
 
 
-    var swipeToCount = 3;
+    var swipeToCount = mainPicNum.value-1;
 
     function swipeTo(n){
         if(n == 'right'){
@@ -385,7 +391,7 @@
 
     document.getElementById('section1').onclick = function(evt){
         if(evt.target.className == "channel"){
-            var onlyNumber = evt.target.id.substr(evt.target.id.length-1, evt.target.id.length);
+            var onlyNumber = evt.target.id.substr(7, evt.target.id.length);
             swipeToCount = onlyNumber;
             setHomePic(onlyNumber);
         }
