@@ -25,16 +25,14 @@ app.post('/addImage/', function(req, res){
 });
 
 
-var mainPicNumber = 0;
 
-fs.readdir('./images/MainPics/', (err, files) => {
-    mainPicNumber = files.length;
-});
 
 app.post('/uploadMainPic/', function(req, res){
     var file = req.files.file;
-    file.mv('images/MainPics/homePic' + parseInt(mainPicNumber+1) + '.jpg', function(err){
-        if(!err) res.redirect('/manage');
+    fs.readdir('./images/MainPics/', (err, files) => {
+        file.mv('images/MainPics/homePic' + parseInt(files.length+1) + '.jpg', function(err){
+            if(!err) res.redirect('/manage');
+        });
     });
 });
 

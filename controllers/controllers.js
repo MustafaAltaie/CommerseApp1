@@ -6,38 +6,38 @@ const Item = mongoose.model('item');
 const PriseCheck = mongoose.model('priseOption');
 const fs = require('fs');
 
-var mainPicNumber = 0;
 
-fs.readdir('./images/MainPics/', (err, files) => {
-    mainPicNumber = files.length;
-});
 
 router.get('/', function(req, res){
-    PriseCheck.find(function(err, data2){
-        Item.find(function(err, data){
-            if(!err){
-                res.render('./layouts/index', {
-                    itemList: data,
-                    priseCheckList: data2,
-                    mainPicNum: mainPicNumber
-                });
-            }
+    fs.readdir('./images/MainPics/', function(err, files){
+        PriseCheck.find(function(err, data2){
+            Item.find(function(err, data){
+                if(!err){
+                    res.render('./layouts/index', {
+                        itemList: data,
+                        priseCheckList: data2,
+                        mainPicNum: files.length
+                    });
+                }
+            }).lean();
         }).lean();
-    }).lean();
+    });
 });
 
 router.get('/manage', function(req, res){
-    PriseCheck.find(function(err, data2){
-        Item.find(function(err, data){
-            if(!err){
-                res.render('./layouts/manage', {
-                    itemList: data,
-                    priseCheckList: data2,
-                    mainPicNum: mainPicNumber
-                });
-            }
+    fs.readdir('./images/MainPics/', function(err, files){
+        PriseCheck.find(function(err, data2){
+            Item.find(function(err, data){
+                if(!err){
+                    res.render('./layouts/manage', {
+                        itemList: data,
+                        priseCheckList: data2,
+                        mainPicNum: files.length
+                    });
+                }
+            }).lean();
         }).lean();
-    }).lean();
+    });
 });
 
 router.post('/addItem', function(req, res){
