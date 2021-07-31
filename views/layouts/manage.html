@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
     </head>
-
+    <h1>{{ffList}}</h1>
     <body>
         <p id="cartNmOfItms">1</p>
         <div id="nav-container">
@@ -30,7 +30,6 @@
                 <p id="cartN">1</p>
             </div>
         </div>
-
         <input type="hidden" value="{{mainPicNum}}" id="mainPicNum">
         <button onclick="deleteHomePic()" id="deleteHomePicB">Delete this image</button>
 
@@ -54,26 +53,32 @@
 
         <div id="section2">
             <p id="offerHeader">Our Offers</p>
-            <div id="offerContainer">
-                <div id="offer1" class="offer">
-                    <h1>Lorem ipsum dolor</h1>
-                    <img src="images/offerPic1.jpg">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
-                    <h2>50$</h2>
-                </div>
-                <div id="offer2" class="offer">
-                    <h1>Lorem ipsum dolor</h1>
-                    <img src="images/offerPic2.jpg">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
-                    <h2>50$</h2>
-                </div>
-                <div id="offer3" class="offer">
-                    <h1>Lorem ipsum dolor</h1>
-                    <img src="images/offerPic3.jpg">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
-                    <h2>50$</h2>
-                </div>
-            </div>
+            <form action="addOffer" method="POST" id="addOfferForm">
+                <input type="text" name="_id" id="addOffer_id" class="addFormOption" placeholder="Id">
+                <input type="text" name="header" id="addOfferHeader" class="addFormOption" placeholder="Header">
+                <input type="text" name="image" id="addOfferImage" class="addFormOption" placeholder="Image name">
+                <input type="text" name="text" id="addOfferText" class="addFormOption" placeholder="Description">
+                <input type="text" name="prise" id="addOfferPrise" class="addFormOption" placeholder="Prise">
+                <p id="addOfferSubmitP" class="addFormOption">Add Offer</p>
+                <button id="addOfferSubmitB" style="display: none">Add</button>
+            </form>
+            {{#each offerList}}
+            <input type="hidden" value="{{this._id}}" class="offer_idDB">
+            <input type="hidden" value="{{this.header}}" class="offerHeaderDB">
+            <input type="hidden" value="{{this.image}}" class="offerImageDB">
+            <input type="hidden" value="{{this.text}}" class="offerTextDB">
+            <input type="hidden" value="{{this.prise}}" class="offerPriseDB">
+            {{/each}}
+            <div id="offerContainer"></div>
+
+            <input type="hidden" id="offerImageNumber" value="{{offerPicNum}}">
+
+            <button id="addOfferImageB">Add Image</button>
+
+            <form action="addOfferImage" method="POST" enctype="multipart/form-data" id="addOfferImageForm">
+                <input type="file" name="file" id="offerImageFile">
+                <button id="addOfferImageSubmit"></button>
+            </form>
         </div>
 
         <div id="section3">
@@ -1150,6 +1155,134 @@
             uploadMainPicP.style.display = "none";
         }
     }
+
+
+
+
+    var offerAddPerm = 1;
+
+    document.getElementById('addOfferSubmitP').onclick = function(){
+        if(addOfferSubmitP.offsetWidth < 300)
+        addOfferAppeare('400px', '10px', '-10px', 'unset');
+        else{
+            for(i = 1; i <= 4; i++){
+                if(document.getElementsByClassName('addFormOption')[i].value == ""){
+                    offerAddPerm = 0;
+                    alert('Fill all the fields');
+                    break;
+                }
+                else{
+                    offerAddPerm = 1;
+                }
+            }
+            if(offerAddPerm != 0){
+                addOfferAppeare('200px', '-50px', '-75px', 'none', 1);
+                addOfferSubmitB.click();
+            }
+        }
+    }
+
+    document.getElementById('section2').onmousedown = function(evt){
+        if(evt.target.className != "addFormOption"){
+            addOfferAppeare('200px', '-50px', '-75px', 'none', 1);
+        }
+    }
+
+    function addOfferAppeare(wdth, lft, mrgn, pntrevnt, pntrevnt2){
+        addOfferForm.style.width = wdth;
+        addOfferForm.style.left = lft;
+        for(i = 0; i <= 5; i++){
+            document.getElementsByClassName('addFormOption')[i].style.marginTop = mrgn;
+            document.getElementsByClassName('addFormOption')[i].style.pointerEvents = pntrevnt;
+        }
+        if(pntrevnt2){
+            addOfferSubmitP.style.pointerEvents = "unset";
+        }
+    }
+
+
+
+    for(i = 0; i < document.getElementsByClassName('offer_idDB').length; i++){
+        var offer = document.createElement('div');
+        offer.id = "offer" + i + 1;
+        offer.className = "offer";
+        offer.offerAddress = document.getElementsByClassName('offer_idDB')[i].value;
+            var h1 = document.createElement('h1');
+            h1.innerHTML = document.getElementsByClassName('offerHeaderDB')[i].value;
+            var img = document.createElement('img');
+            img.src = 'images/offer Images/' + document.getElementsByClassName('offerImageDB')[i].value + '.jpg';
+            var p = document.createElement('p');
+            p.innerHTML = document.getElementsByClassName('offerTextDB')[i].value;
+            var h2 = document.createElement('h2');
+            h2.innerHTML = document.getElementsByClassName('offerPriseDB')[i].value;
+        offer.appendChild(h1);
+        offer.appendChild(img);
+        offer.appendChild(p);
+        offer.appendChild(h2);
+        offerContainer.appendChild(offer);
+    }
+
+
+
+    var thisRotate = "";
+    var thisZ = "";
+    var thisOffer = "";
+
+    document.getElementById('section2').onmousemove = function(evt){
+        if(evt.target.className == "offer"){
+            if(evt.target.id != thisOffer && thisOffer == ""){
+                setOfferStyle(evt.target.id);
+            }
+            else{
+                document.getElementById(thisOffer).style.zIndex = thisZ;
+                document.getElementById(thisOffer).style.transform = thisRotate;
+                setOfferStyle(evt.target.id);
+            }
+        }
+        else{
+            document.getElementById(thisOffer).style.zIndex = thisZ;
+            document.getElementById(thisOffer).style.transform = thisRotate;
+        }
+    }
+
+    function setOfferStyle(n){
+        thisOffer = n;
+        thisRotate = document.getElementById(n).style.transform;
+        thisZ = document.getElementById(n).style.zIndex;
+        document.getElementById(n).style.zIndex = 100;
+        document.getElementById(n).style.transform = "rotate(0deg)";
+    }
+
+
+
+
+    for(i = 0; i < document.getElementsByClassName('offer').length; i++){
+        var rnd = Math.ceil(Math.random()*10);
+        var rnd2 = Math.ceil(Math.random()*2);
+        if(rnd2 > 1){
+            n = rnd*-1;
+        }
+        else{
+            n = rnd;
+        }
+        document.getElementsByClassName('offer')[i].style.transform = "rotate(" + n + "deg)";
+        document.getElementsByClassName('offer')[i].style.zIndex = rnd;
+    }
+
+
+
+
+    document.getElementById('addOfferImageB').onclick = function(){
+        if(addOfferImageB.innerHTML == "Add Image"){
+            addOfferImageB.innerHTML = "Upload";
+            offerImageFile.click();
+        }
+        else{
+            addOfferImageSubmit.click();
+            addOfferImageB.style.display = "none";
+        }
+    }
+
 
 
     // function fetch(){

@@ -47,26 +47,14 @@
 
         <div id="section2">
             <p id="offerHeader">Our Offers</p>
-            <div id="offerContainer">
-                <div id="offer1" class="offer">
-                    <h1>Lorem ipsum dolor</h1>
-                    <img src="images/offerPic1.jpg">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
-                    <h2>50$</h2>
-                </div>
-                <div id="offer2" class="offer">
-                    <h1>Lorem ipsum dolor</h1>
-                    <img src="images/offerPic2.jpg">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
-                    <h2>50$</h2>
-                </div>
-                <div id="offer3" class="offer">
-                    <h1>Lorem ipsum dolor</h1>
-                    <img src="images/offerPic3.jpg">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolore voluptatem veniam quos amet facere aperiam facilis doloremque natus voluptatum dolorum</p>
-                    <h2>50$</h2>
-                </div>
-            </div>
+            {{#each offerList}}
+            <input type="hidden" value="{{this._id}}" class="offer_idDB">
+            <input type="hidden" value="{{this.header}}" class="offerHeaderDB">
+            <input type="hidden" value="{{this.image}}" class="offerImageDB">
+            <input type="hidden" value="{{this.text}}" class="offerTextDB">
+            <input type="hidden" value="{{this.prise}}" class="offerPriseDB">
+            {{/each}}
+            <div id="offerContainer"></div>
         </div>
 
         <div id="section3">
@@ -921,6 +909,76 @@
         productsMenuePrises.appendChild(priseCheck);
         productsMenuePrises.appendChild(label);
         productsMenuePrises.appendChild(br);
+    }
+
+
+
+
+    for(i = 0; i < document.getElementsByClassName('offer_idDB').length; i++){
+        var offer = document.createElement('div');
+        offer.id = "offer" + i + 1;
+        offer.className = "offer";
+        offer.offerAddress = document.getElementsByClassName('offer_idDB')[i].value;
+            var h1 = document.createElement('h1');
+            h1.innerHTML = document.getElementsByClassName('offerHeaderDB')[i].value;
+            var img = document.createElement('img');
+            img.src = 'images/offer Images/' + document.getElementsByClassName('offerImageDB')[i].value + '.jpg';
+            var p = document.createElement('p');
+            p.innerHTML = document.getElementsByClassName('offerTextDB')[i].value;
+            var h2 = document.createElement('h2');
+            h2.innerHTML = document.getElementsByClassName('offerPriseDB')[i].value;
+        offer.appendChild(h1);
+        offer.appendChild(img);
+        offer.appendChild(p);
+        offer.appendChild(h2);
+        offerContainer.appendChild(offer);
+    }
+
+
+
+    var thisRotate = "";
+    var thisZ = "";
+    var thisOffer = "";
+
+    document.getElementById('section2').onmousemove = function(evt){
+        if(evt.target.className == "offer"){
+            if(evt.target.id != thisOffer && thisOffer == ""){
+                setOfferStyle(evt.target.id);
+            }
+            else{
+                document.getElementById(thisOffer).style.zIndex = thisZ;
+                document.getElementById(thisOffer).style.transform = thisRotate;
+                setOfferStyle(evt.target.id);
+            }
+        }
+        else{
+            document.getElementById(thisOffer).style.zIndex = thisZ;
+            document.getElementById(thisOffer).style.transform = thisRotate;
+        }
+    }
+
+    function setOfferStyle(n){
+        thisOffer = n;
+        thisRotate = document.getElementById(n).style.transform;
+        thisZ = document.getElementById(n).style.zIndex;
+        document.getElementById(n).style.zIndex = 100;
+        document.getElementById(n).style.transform = "rotate(0deg)";
+    }
+
+
+
+
+    for(i = 0; i < document.getElementsByClassName('offer').length; i++){
+        var rnd = Math.ceil(Math.random()*10);
+        var rnd2 = Math.ceil(Math.random()*2);
+        if(rnd2 > 1){
+            n = rnd*-1;
+        }
+        else{
+            n = rnd;
+        }
+        document.getElementsByClassName('offer')[i].style.transform = "rotate(" + n + "deg)";
+        document.getElementsByClassName('offer')[i].style.zIndex = rnd;
     }
 
 </script>

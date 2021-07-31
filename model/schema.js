@@ -15,3 +15,12 @@ var newCheck = new mongoose.Schema({
     priseCheckbox: {type: String}
 });
 mongoose.model('priseOption', newCheck);
+
+
+var newOffer = new mongoose.Schema({
+    header: {type: String},
+    image: {type: String},
+    text: {type: String},
+    prise: {type: String}
+});
+mongoose.model('offer', newOffer);

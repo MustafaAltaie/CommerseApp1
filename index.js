@@ -14,6 +14,7 @@ app.use(bodyP.urlencoded({
     extended: true
 }));
 
+
 app.use(fileUpload());
 
 app.post('/addImage/', function(req, res){
@@ -35,6 +36,19 @@ app.post('/uploadMainPic/', function(req, res){
         });
     });
 });
+
+
+
+app.post('/addOfferImage', function(req, res){
+    var file = req.files.file;
+    fs.readdir('./images/offer Images/', (err, files) => {
+        file.mv('images/offer Images/offerPic' + parseInt(files.length+1) + '.jpg', function(err){
+            if(!err) res.redirect('/manage');
+        });
+    });
+});
+
+
 
 app.engine('html', exphbs({
     extname: "html",
