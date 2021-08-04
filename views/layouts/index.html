@@ -310,7 +310,7 @@
 
 <script>
 
-    var socket = io.connect('http://localhost:3000/');
+    var socket = io.connect('mustafaaltaiecommerce.herokuapp.com/');
 
     socket.on('reload', function(){
         window.location.reload();
@@ -367,7 +367,10 @@
         for(i = 0; i <= numOfHomePic; i++){
             document.getElementsByClassName('homePic')[i].style.opacity = 0;
             document.getElementsByClassName('channel')[i].style.background = "#555";
-            document.getElementsByClassName('homePic')[i].style.objectPosition = 'unset';
+            if(window.matchMedia('(min-width: 1024px)').matches)
+            document.getElementsByClassName('homePic')[i].style.objectPosition = 'left 100%';
+            else
+            document.getElementsByClassName('homePic')[i].style.objectPosition = 'right 0%';
         }
         document.getElementsByClassName('homePic')[n].style.opacity = 1;
         if(objectPositionPerm == 1)
@@ -404,7 +407,7 @@
             swipeTo('right');
             imgCount = 0;
         }
-    }, 2000);
+    }, 2500);
 
 
 
