@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
+        <script src="/socket.io/socket.io.js"></script>
     </head>
 
     <body>
@@ -40,8 +41,8 @@
                 <h3 onclick="openOtherSection('contactSection')">Contact Us</h3>
             </div>
             <div id="homePicContainer"></div>
-            <p onclick="swipeTo('right')" id="SwipeRight">></p>
-            <p onclick="swipeTo('left')" id="SwipeLeft"><</p>
+            <p onclick="swipeTo('right'); imgCount = 1" id="SwipeRight">></p>
+            <p onclick="swipeTo('left'); imgCount = 1" id="SwipeLeft"><</p>
             <div id="channelContainer"></div>
         </div>
 
@@ -309,6 +310,14 @@
 
 <script>
 
+    var socket = io.connect('http://localhost:3000/');
+
+    socket.on('reload', function(){
+        window.location.reload();
+    });
+
+    var offerRotatePerm = 1;
+
     document.addEventListener('scroll', function(){
         if(document.documentElement.scrollTop > 2){
             document.getElementById('cart-container').style.right = "10px";
@@ -323,6 +332,12 @@
             navBar.style.right = "200px";
             if(window.matchMedia('(min-width: 1024px)').matches)
             navBar.style.borderRadius = "50px";
+        }
+        if(document.documentElement.scrollTop >= section2.offsetTop){
+            if(offerRotatePerm == 1){
+                offerRotatePerm = 0;
+                offerRotate();
+            }
         }
     });
 
@@ -347,14 +362,18 @@
 
     var numOfHomePic = document.getElementsByClassName('homePic').length-1;
 
-
+    var objectPositionPerm = 0;
     function setHomePic(n){
         for(i = 0; i <= numOfHomePic; i++){
             document.getElementsByClassName('homePic')[i].style.opacity = 0;
             document.getElementsByClassName('channel')[i].style.background = "#555";
+            document.getElementsByClassName('homePic')[i].style.objectPosition = 'unset';
         }
         document.getElementsByClassName('homePic')[n].style.opacity = 1;
+        if(objectPositionPerm == 1)
+        document.getElementsByClassName('homePic')[n].style.objectPosition = 'left 0%';
         document.getElementsByClassName('channel')[n].style.background = "rgb(250, 150, 68)";
+        objectPositionPerm = 1;
     }
 
 
@@ -377,11 +396,24 @@
     }
 
 
+
+    var imgCount = 5;
+    setInterval(function(){
+        imgCount++;
+        if(imgCount >= 5){
+            swipeTo('right');
+            imgCount = 0;
+        }
+    }, 2000);
+
+
+
     document.getElementById('section1').onclick = function(evt){
         if(evt.target.className == "channel"){
             var onlyNumber = evt.target.id.substr(7, evt.target.id.length);
             swipeToCount = onlyNumber;
             setHomePic(onlyNumber);
+            imgCount = 1;
         }
     }
 
@@ -946,14 +978,16 @@
                 setOfferStyle(evt.target.id);
             }
             else{
-                document.getElementById(thisOffer).style.zIndex = thisZ;
                 document.getElementById(thisOffer).style.transform = thisRotate;
+                document.getElementById(thisOffer).style.zIndex = thisZ;
+                document.getElementById(thisOffer).style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
                 setOfferStyle(evt.target.id);
             }
         }
         else{
             document.getElementById(thisOffer).style.zIndex = thisZ;
             document.getElementById(thisOffer).style.transform = thisRotate;
+            document.getElementById(thisOffer).style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
         }
     }
 
@@ -963,22 +997,25 @@
         thisZ = document.getElementById(n).style.zIndex;
         document.getElementById(n).style.zIndex = 100;
         document.getElementById(n).style.transform = "rotate(0deg)";
+        document.getElementById(n).style.boxShadow = "0 0 30px #000";
     }
 
 
 
 
-    for(i = 0; i < document.getElementsByClassName('offer').length; i++){
-        var rnd = Math.ceil(Math.random()*10);
-        var rnd2 = Math.ceil(Math.random()*2);
-        if(rnd2 > 1){
-            n = rnd*-1;
+    function offerRotate(){
+        for(i = 0; i < document.getElementsByClassName('offer').length; i++){
+            var rnd = Math.ceil(Math.random()*10);
+            var rnd2 = Math.ceil(Math.random()*2);
+            if(rnd2 > 1){
+                n = rnd*-1;
+            }
+            else{
+                n = rnd;
+            }
+            document.getElementsByClassName('offer')[i].style.transform = "rotate(" + n + "deg)";
+            document.getElementsByClassName('offer')[i].style.zIndex = rnd;
         }
-        else{
-            n = rnd;
-        }
-        document.getElementsByClassName('offer')[i].style.transform = "rotate(" + n + "deg)";
-        document.getElementsByClassName('offer')[i].style.zIndex = rnd;
     }
 
 </script>

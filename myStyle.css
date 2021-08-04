@@ -405,7 +405,7 @@ ul{
     list-style: none;
     background: #111;
     border-radius: 50px;
-    transition: right 0.5s, border-radius linear 0.7s;
+    transition: right 0.5s, border-radius 0.3s linear 0.4s;
 }
 ul a{
     padding: 20px;
@@ -424,10 +424,10 @@ ul a:hover{
     top: 20px;
     right: 50px;
     cursor: pointer;
-    padding: 9px 15px;
+    padding: 9.1px 15px;
     border-radius: 50%;
     background: #111;
-    transition: right 0.5s, border-radius linear 0.7s, filter 0.1s, padding 0.1s;
+    transition: right 0.5s, border-radius 0.3s linear 0.4s, filter 0.1s, padding 0.1s;
 }
 #cart-container:hover{
     padding: 5px 15px 13px 15px;
@@ -513,8 +513,9 @@ ul a:hover{
     max-width: 100%;
     height: 550px;
     object-fit: cover;
+    object-position: left 0%;
     opacity: 0;
-    transition: 1s;
+    transition: opacity 2s, object-position 25s;
     pointer-events: none;
 }
 #SwipeRight, #SwipeLeft{
@@ -574,13 +575,13 @@ ul a:hover{
     padding: 100px 20px;
 }
 .offer{
-    width: 250px;
+    width: 235px;
     min-height: 100%;
     background-image: url('images/signInUp2.jpg');
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     margin: -10px;
     border-radius: 10px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.5s;
 }
 
 .offer > h1{
@@ -593,14 +594,14 @@ ul a:hover{
 .offer img{
     width: 80%;
     height: 120px;
-    border: solid 1px rgba(197, 137, 68, 0.3);
+    border: solid 1px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     object-fit: cover;
     margin-bottom: 5px;
     pointer-events: none;
 }
 .offer p{
-    color: #999;
+    color: #aaa;
     padding: 0 30px;
     min-height: 50px;
     max-height: 50px;
@@ -611,9 +612,10 @@ ul a:hover{
     display: none;
 }
 .offer h2{
-    color: #999;
+    color: rgb(197, 137, 68);
     padding: 0 0 20px 0;
-    font-size: 30px;
+    font-size: 22px;
+    font-weight: normal;
     pointer-events: none;
 }
 
@@ -1531,7 +1533,7 @@ add{
 #addOfferForm{
     z-index: 500;
     position: absolute;
-    top: 250px;
+    top: 35%;
     left: -50px;
     width: 200px;
     display: flex;
@@ -1562,10 +1564,84 @@ add{
     display: none;
 }
 
-#addOfferImageB{
-    padding: 10px 50px;
-    border-radius: 50px 50px 0 0;
+
+
+#allOfferImage{
+    z-index: 100;
+    position: absolute;
+    width: 45%;
+    height: auto;
+    max-height: 450px;
+    overflow-y: scroll;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-35%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #111;
+    border: solid 1px rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 50px 0;
+    display: none;
+}
+#allOfferImage::-webkit-scrollbar{
+    width: 10px;
+}
+#allOfferImage::-webkit-scrollbar-thumb{
+    width: 100%;
+    border-radius: 10px;
+    background: #057;
+}
+#allOfferImage img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 20px;
+    border-radius: 5px;
+}
+#allOfferImage p{
+    width: 100px;
+    margin: 20px 20px 20px -120px;
+    padding: 30px 0;
+    border-radius: 5px;
+    color: white;
+    border: solid 1px rgba(255, 255, 255, 0.2);
+}
+#allOfferImage p:hover{
+    background: rgba(255, 255, 255, 0.1);
+}
+#allOfferImage p:active{
+    background: rgba(0, 0, 0, 0.7);
+}
+#allOfferImage b{
+    position: absolute;
+    color: red;
+    font-weight: normal;
+    display: none;
+}
+#allOfferImage button{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 40px;
+    border-radius: 0 0 50px 50px;
     border: none;
-    cursor: pointer;
+    background: #057;
+    color: white;
+}
+
+#addToOfferImagesText{
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 22px;
+    text-align: center;
     font-weight: bold;
+    display: none;
 }

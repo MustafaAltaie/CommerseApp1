@@ -10,19 +10,20 @@ const fs = require('fs');
 
 router.get('/', function(req, res){
     fs.readdir('./images/MainPics/', function(err, MainPics){
-        fs.readdir('./images/offer Images/', function(err, offerImages){
+        fs.readdir('images/offer Images/', function(err, offeImagesFiles){
             NewOffer.find(function(err, data3){
                 PriseCheck.find(function(err, data2){
                     Item.find(function(err, data){
                         if(!err){
-                            res.render('./layouts/index', {
-                                itemList: data,
-                                priseCheckList: data2,
-                                offerList: data3,
-                                mainPicNum: MainPics.length,
-                                offerPicNum: offerImages.length
+                            offeImagesFiles.forEach(function(){
+                                res.render('./layouts/index', {
+                                    itemList: data,
+                                    priseCheckList: data2,
+                                    offerList: data3,
+                                    mainPicNum: MainPics.length
+                                });
                             });
-                        }
+                        }   
                     }).lean();
                 }).lean();
             }).lean();
@@ -32,19 +33,22 @@ router.get('/', function(req, res){
 
 router.get('/manage', function(req, res){
     fs.readdir('./images/MainPics/', function(err, MainPics){
-        fs.readdir('./images/offer Images/', function(err, offerImages){
+        fs.readdir('images/offer Images/', function(err, offeImagesFiles){
             NewOffer.find(function(err, data3){
                 PriseCheck.find(function(err, data2){
                     Item.find(function(err, data){
                         if(!err){
-                            res.render('./layouts/manage', {
-                                itemList: data,
-                                priseCheckList: data2,
-                                offerList: data3,
-                                mainPicNum: MainPics.length,
-                                offerPicNum: offerImages.length
+                            offeImagesFiles.forEach(function(){
+                                res.render('./layouts/manage', {
+                                    itemList: data,
+                                    priseCheckList: data2,
+                                    offerList: data3,
+                                    mainPicNum: MainPics.length,
+                                    offeImagesFilesList: offeImagesFiles,
+                                    offeImagesFilesLength: offeImagesFiles.length
+                                });
                             });
-                        }
+                        }   
                     }).lean();
                 }).lean();
             }).lean();
@@ -110,17 +114,48 @@ router.get('/deleteMainPic/:n/:n2', function(req, res){
 });
 
 
+router.get('/delOfferImage/:id', function(req, res){
+    fs.unlinkSync('images/offer Images/' + req.params.id + '.jpg', function(){});
+});
+
 
 router.post('/addOffer', function(req, res){
-    var newOffer = new NewOffer();
-    newOffer.header = req.body.header;
-    newOffer.image = req.body.image;
-    newOffer.text = req.body.text;
-    newOffer.prise = req.body.prise;
-    newOffer.save(function(err){
+    if(req.body._id == ""){
+        var newOffer = new NewOffer();
+        newOffer.header = req.body.header;
+        newOffer.image = req.body.image;
+        newOffer.text = req.body.text;
+        newOffer.prise = req.body.prise;
+        newOffer.save(function(err){
+            if(!err) res.redirect('/manage');
+        });
+    }
+    else{
+        NewOffer.findByIdAndUpdate({_id: req.body._id}, req.body, {new: true}, function(err){
+            if(!err) res.redirect('/manage');
+        });
+    }
+});
+
+
+
+router.get('/deleteOffer/:id', function(req, res){
+    NewOffer.findByIdAndRemove(req.params.id, function(err){
         if(!err) res.redirect('/manage');
     });
 });
 
+
+
+router.get('/m', function(req, res){
+    fs.readdir('images/products/', function(err, files){
+        files.forEach(function(){
+            res.render('./layouts/m', {
+                list: files,
+                length: files.length
+            });
+        });
+    });
+});
 
 module.exports = router;
