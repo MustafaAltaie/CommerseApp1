@@ -24,3 +24,10 @@ var newOffer = new mongoose.Schema({
     prise: {type: String}
 });
 mongoose.model('offer', newOffer);
+
+
+var newEmployee = new mongoose.Schema({
+    name: {type: String},
+    info: {type: String}
+});
+mongoose.model('employee', newEmployee);

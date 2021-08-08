@@ -58,7 +58,7 @@
                 <input name="header" id="addOfferHeader" class="addFormOption" placeholder="Header" autocomplete="off" oninput="offerUpdataDelete()">
                 <input name="image" id="addOfferImage" class="addFormOption" placeholder="Chose image" autocomplete="off" oninput="offerUpdataDelete()">
                 <input name="text" id="addOfferText" class="addFormOption" placeholder="Description" autocomplete="off" oninput="offerUpdataDelete()">
-                <input name="prise" id="addOfferPrise" class="addFormOption" placeholder="Prise" autocomplete="off" oninput="offerUpdataDelete()">
+                <input type="number" name="prise" id="addOfferPrise" class="addFormOption" placeholder="Prise" autocomplete="off" oninput="offerUpdataDelete()">
                 <p id="addOfferSubmitP" class="addFormOption">Add Offer</p>
                 <button id="addOfferSubmitB" style="display: none"></button>
             </form>
@@ -85,19 +85,27 @@
                 <input id="addToOfferImagesText" placeholder="Name the image" spellcheck="false" autocomplete="off">
                 <button id="addToOfferImages">Add image</button>
                 <b id="DelOfferImage">Delete</b>
+                <u id="EditOfferImage">Edit</u>
+                <textarea name="" id="EditOfferImageText" placeholder="New Name"></textarea>
             </div>
         </div>
 
         <div id="section3">
+            {{#each employeeList}}
+            <input type="hidden" value="{{this._id}}" class="employee_IdDB">
+            <input type="hidden" value="{{this.name}}" class="employeeNameDB">
+            <input type="hidden" value="{{this.info}}" class="employeeInfoDB">
+            {{/each}}
+            <form action="addEmployee" method="POST" enctype="multipart/form-data" id="addEmployeeForm">
+                <input type="hidden" name="_id" id="employee_Id">
+                <input name="employeeName" id="employeeNameText" placeholder="Employee Name" spellcheck="false" autocomplete="off">
+                <textarea name="employeeInfo" id="employeeInfoText" placeholder="Employee Information" autocomplete="off"></textarea>
+                <input type="file" name="file" id="employeeFile" style="display: none">
+                <p id="addEmployeeSubmitP">Add Picture</p>
+                <button id="addEmployeeSubmitB" style="display: none"></button>
+            </form>
             <div id="employeePicContainer">
                 <div id="employeePicContainerSmall">
-                    <img src="" id="addEmployee" class="employeePic">
-                    <img src="images/employee1.jpg" id="employee1" class="employeePic">
-                    <img src="images/employee2.jpg" id="employee2" class="employeePic">
-                    <img src="images/employee3.jpg" id="employee3" class="employeePic">
-                    <img src="images/employee4.jpg" id="employee4" class="employeePic">
-                    <img src="images/employee5.jpg" id="employee5" class="employeePic">
-                    <img src="images/employee6.jpg" id="employee6" class="employeePic">
                     <img src="" id="addEmployee" class="employeePic">
                 </div>
             </div>
@@ -105,13 +113,6 @@
                 <b id="employeeRight">></b>
                 <b id="employeeLeft"><</b>
                 <p class="employeeInfo" id="employeeInfo0" style="display: none"></p>
-                <p class="employeeInfo" id="employeeInfo1" style="display: none">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo2" style="display: none">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto!</p>
-                <p class="employeeInfo" id="employeeInfo3" style="display: none">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis!</p>
-                <p class="employeeInfo" id="employeeInfo4" style="display: none">4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo5" style="display: none">5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit !doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo6" style="display: none">6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo7" style="display: none"></p>
             </div>
             <h1>Our Employees</h1>
             <h3>Don't hesitate to <u style="color: rgb(155, 110, 42); font-weight: bold; font-size: 20px">contact us</i></h3>
@@ -131,8 +132,8 @@
                 </datalist>
                 <p id="editPrise">Edit Prise</p>
                 <input type="number" id="editPriseT" oninput="updateItem('#050', 'Update Info')">
-                <p id="editImage">Edit Image</p>
-                <input id="editImageT" oninput="updateItem('#050', 'Update Info')">
+                <p id="editImage" style="display: none">Edit Image</p>
+                <input id="editImageT" style="display: none" oninput="updateItem('#050', 'Update Info')">
                 <p id="editText">Edit Description</p>
                 <input id="editTextT" oninput="updateItem('#050', 'Update Info')">
                 <h1 id="deleteItem">Delete</h1>
@@ -147,19 +148,20 @@
             <input type="hidden" value="{{this.text}}" class="textDB">
             {{/each}}
 
-            <form action="addItem" method="POST" id="addItemForm">
-                <input type="hidden" id="_idText" name="_id" placeholder="_id">
-                <input id="catigoryText" name="catigory" placeholder="catigory">
-                <input list="browsers" id="genderText" name="gender" placeholder="gender">
+            <form action="addItem" method="POST" id="addItemForm" enctype="multipart/form-data">
+                <input type="hidden" id="_idText" name="_id">
+                <input id="catigoryText" name="catigory" placeholder="Catigory">
+                <input list="browsers" id="genderText" name="gender" placeholder="Gender">
                 <datalist id="browsers">
                     <option value="Man">
                     <option value="Woman">
                     <option value="Child">
                 </datalist>
-                <input type="number" id="priseText" name="prise" placeholder="prise">
-                <input id="imgSrcText" name="imgSrc" placeholder="imgSrc">
-                <input id="textText" name="text" placeholder="text">
-                <p onclick="addItemF()" id="PText">Add</p>
+                <input type="number" id="priseText" name="prise" placeholder="Prise">
+                <input type="file" id="fileFile" name="file" style="display: none">
+                <input id="imgSrcText" name="imgSrc" placeholder="Name the image">
+                <input id="textText" name="text" placeholder="Text">
+                <p onclick="addItemF()" id="PText">Upload image</p>
                 <button id="addItemSubmit" style="display: none"></button>
             </form>
 
@@ -195,13 +197,6 @@
                 </div>
                 <div id="productItems"></div>
                 <add onclick="openAddItemForm()">+</add>
-                <h4 id="addImage">Upload Image</h4>
-
-                <form id="addImageForm" action="addImage" method="POST" enctype="multipart/form-data">
-                    <input id="browseImage" type="file" name="file" style="display: none">
-                    <input id="addImageName" name="fileName" placeholder="Image Name">
-                    <button style="display: none" id="addImageButton">Upload</button>
-                </form>
             </div>
 
             <div class="otherSection" id="contactSection">
@@ -247,32 +242,7 @@
                     </div>
                     <div id="aboutSecP2">
                         <h1>Meet the team</h1>
-                        <div id="aboutSecP2Small">
-                            <div>
-                                <img src="images/employee1.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee2.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee3.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee4.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee5.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee6.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                        </div>
+                        <div id="aboutSecP2Small"></div>
                     </div>
                 </div>
             </div>
@@ -400,9 +370,6 @@
     function deleteHomePic(){
         socket.emit('reload');
         window.location.href = '/deleteMainPic/' + currentMainPicN + "/" + mainPicNum.value;
-        setTimeout(function(){
-            window.location.reload();
-        }, 1000);
         deleteHomePicB.style.display = "none";
     }
 
@@ -508,6 +475,58 @@
 
 
 
+    for(i = 0; i < document.getElementsByClassName('employee_IdDB').length; i++){
+        var imgName = document.getElementsByClassName('employeeNameDB')[i].value;
+        var img = document.createElement('img');
+        img.employeeIdAddress = document.getElementsByClassName('employee_IdDB')[i].value;
+        img.empName = document.getElementsByClassName('employeeNameDB')[i].value;
+        img.info = document.getElementsByClassName('employeeInfoDB')[i].value;
+        img.src = 'images/Employees/' + imgName + '.jpg';
+        img.id = 'employee' + parseInt(i + 1);
+        img.className = 'employeePic';
+        employeePicContainerSmall.appendChild(img);
+        createEmployeeInfo(i);
+        if(i == document.getElementsByClassName('employee_IdDB').length-1){
+            var addImg = document.createElement('img');
+            addImg.src = "";
+            addImg.id = "addEmployee";
+            addImg.className = 'employeePic';
+            employeePicContainerSmall.appendChild(addImg);
+        }
+    }
+
+    function createEmployeeInfo(i){
+        var p = document.createElement('p');
+        p.className = 'employeeInfo';
+        p.id = 'employeeInfo' + parseInt(i + 1);
+        p.style.display = 'none';
+        p.innerHTML = document.getElementsByClassName('employeeInfoDB')[i].value;
+        employeeInfoContainer.appendChild(p);
+        if(i == document.getElementsByClassName('employee_IdDB').length-1){
+            var pp = document.createElement('p');
+            pp.className = 'employeeInfo';
+            pp.id = 'employeeInfo' + parseInt(i + 1);
+            pp.style.display = 'none';
+            employeeInfoContainer.appendChild(pp);
+        }
+    }
+
+
+    for(i = 0; i < document.getElementsByClassName('employee_IdDB').length; i++){
+        var imgName = document.getElementsByClassName('employeeNameDB')[i].value;
+        var div = document.createElement('div');
+        var img = document.createElement('img');
+        img.src = 'images/Employees/' + imgName + '.jpg';
+        var p = document.createElement('p');
+        p.innerHTML = document.getElementsByClassName('employeeNameDB')[i].value + "<br><i>" + document.getElementsByClassName('employeeInfoDB')[i].value + "</i>";
+        div.appendChild(img);
+        div.appendChild(p);
+        aboutSecP2Small.appendChild(div);
+    }
+
+
+
+
     var employeeSwipeCount = 1;
     var EmpSwipeRPerm = 1;
     var EmpSwipeLPerm = 1;
@@ -558,8 +577,33 @@
             currentSwipe = '';
         }
 
-        if(evt.target.className == "employeePic" && evt.target.id== "addEmployee"){
-            alert()
+        if(evt.target.className == "employeePic"){
+            addEmployeeForm.style.display = "flex";
+            if(evt.target.id != "addEmployee"){
+                addEmployeeSubmitP.innerHTML = "Delete Employee";
+                addEmployeeSubmitP.style.background = "#f22";
+                var fillInfoN = ({
+                    id: document.getElementById(evt.target.id).employeeIdAddress,
+                    name: document.getElementById(evt.target.id).empName,
+                    info: document.getElementById(evt.target.id).info
+                });
+                addEmpTextFill(fillInfoN);
+            }
+            else{
+                addEmployeeSubmitP.innerHTML = "Add Picture";
+                addEmployeeSubmitP.style.background = "#972";
+                var fillInfoN = ({
+                    id: '', name: '', info: ''
+                });
+                addEmpTextFill(fillInfoN);
+            }
+        }
+        if(evt.target.className != "employeePic"
+        && evt.target.id != "employeeNameText"
+        && evt.target.id != "employeeInfoText"
+        && evt.target.id != "employeeFile"
+        && evt.target.id != "addEmployeeSubmitP"){
+            addEmployeeForm.style.display = "none";
         }
 
         if(evt.target.id.substr(0, evt.target.id.length-1) == "employee"){
@@ -581,6 +625,58 @@
                     EmpSwipeRPerm = 1;
                     empSwipeSet(employeePicSwipeSize, employeeSwipeCount);
                 }
+            }
+        }
+    }
+
+
+
+    function addEmpTextFill(fillInfo){
+        employee_Id.value = fillInfo.id;
+        employeeNameText.value = fillInfo.name;
+        employeeInfoText.value = fillInfo.info;
+    }
+
+
+
+
+
+    document.getElementById('addEmployeeSubmitP').onclick = function(){
+        if(addEmployeeSubmitP.innerHTML == "Add Picture"){
+            employeeFile.click();
+        }
+        else if(addEmployeeSubmitP.innerHTML == "Delete Employee"){
+            addEmployeeSubmitP.style.display = "none";
+            window.location.href = '/deleteEmployee/' + employee_Id.value + '/' + employeeNameText.value;
+        }
+        else{
+            if(employeeNameText.value != ""
+            && employeeInfoText.value != ""){
+                if(employeeFile.value != ""){
+                    addEmployeeSubmitB.click();
+                    addEmployeeSubmitP.style.display = "none";
+                }
+                else{
+                    employeeFile.click();
+                }
+            }
+            else alert('Fill all the fields');
+        }
+    }
+
+    document.getElementById('employeeFile').onchange = function(){
+        if(employeeFile.value != ""){
+            if(employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".jpg"
+            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".bmp"
+            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".png"
+            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == "jpeg"
+            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".gif"){
+                addEmployeeSubmitP.innerHTML =  "Add Employee";
+                addEmployeeSubmitP.style.background = "rgb(68, 131, 49)";
+                employeeNameText.focus();
+            }
+            else{
+                alert('File must be image');
             }
         }
     }
@@ -989,25 +1085,79 @@
     }
 
 
-   function addItemF(){
-        if(catigoryText.value != "" && genderText.value != ""
-        && priseText.value != "" && textText.value != ""){
-            if(genderText.value != "Man"
-            && genderText.value != "Woman"
-            && genderText.value != "Child"){
-                alert('Gender can be either Man, Woman or Child');
-                genderText.value = "";
-            }
-            else{
-                addItemForm.style.display = "none";
-                addItemSubmit.click();
-                socket.emit('reload');
-            }
+    function addItemF(){
+        if(PText.innerHTML == "Upload image"){
+            fileFile.click();
         }
-        else
-        alert('Fill all the fields');
-   }
+        else{
+                if(catigoryText.value != "" && genderText.value != ""
+                && priseText.value != "" && textText.value != ""){
+                    if(genderText.value != "Man"
+                    && genderText.value != "Woman"
+                    && genderText.value != "Child"){
+                        alert('Gender can be either Man, Woman or Child');
+                        genderText.value = "";
+                    }
+                    else{
+                        addItemForm.style.display = "none";
+                        addItemSubmit.click();
+                        socket.emit('reload');
+                    }
+                }
+                else
+                alert('Fill all the fields');
+        }
+    }
 
+    document.getElementById('fileFile').onchange = function(){
+        if(fileFile.value != ""){
+            if(fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.jpg'
+            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.bmp'
+            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.png'
+            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.gif'
+            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == 'jpeg'){
+                PText.style.background = "#0a0";
+                PText.innerHTML = "Add item";
+            }
+            else alert('File is not recoginized');
+        }
+    }
+
+
+   catigoryText.addEventListener('keydown', function(e){
+        if(e.keyCode == 32){
+            alert('Space is not allowed');
+            setTimeout(function(){
+                catigoryText.value = catigoryText.value.substr(0, catigoryText.value.length-1);
+            }, 10);
+        }
+    });
+
+    imgSrcText.addEventListener('keydown', function(e){
+        if(e.keyCode == 32){
+            alert('Space is not allowed');
+            setTimeout(function(){
+                imgSrcText.value = imgSrcText.value.substr(0, imgSrcText.value.length-1);
+            }, 10);
+        }
+    });
+
+    editCatigoryT.addEventListener('keydown', function(e){
+        if(e.keyCode == 32){
+            alert('Space is not allowed');
+            setTimeout(function(){
+                editCatigoryT.value = editCatigoryT.value.substr(0, editCatigoryT.value.length-1);
+            }, 10);
+        }
+    });
+
+
+    document.addEventListener('keydown', function(e){
+        if(e.keyCode == 13){
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    });
 
 
    var currentIdAddress = "";
@@ -1038,7 +1188,9 @@
             if(deleteItem.innerHTML == "Delete"){
                 socket.emit('reload');
                 itemSettings.style.display = "none";
-                window.location.href = "/deleteItem/" + currentIdAddress;
+                var currentImg = document.getElementById(currentId).imgSrc;
+                var currentImgRaw = (currentImg.substr(16, currentImg.length));
+                window.location.href = "/deleteItem/" + currentIdAddress + '/' + currentImgRaw;
             }
             else{
                 _idText.value = currentIdAddress;
@@ -1075,7 +1227,8 @@
             document.getElementById(evt.target.id+"T").style.display = "block";
         }
 
-        if(evt.target.id.substr(evt.target.id.length-4, evt.target.id.length) != "Text"){
+        if(evt.target.id.substr(evt.target.id.length-4, evt.target.id.length) != "Text"
+        && evt.target.id != "fileFile"){
             addItemForm.style.display = "none";
         }
     });
@@ -1139,28 +1292,8 @@
             newPriseCheckForm.style.display = 'none';
             window.location.href = '/deletePriseCheck/' + _idPriseCheck.value;
         }
-        if(evt.target.id != "browseImage"
-        && evt.target.id != "addImage"
-        && evt.target.id != "addImageName"){
-            addImageForm.style.display = "none";
-            addImageButton.style.display = "none";
-        }
     }
 
-
-
-    document.getElementById('addImage').onclick = function(){
-        addImageForm.style.display = "block";
-        browseImage.click();
-    }
-
-
-    document.getElementById('addImageName').oninput = function(){
-        if(addImageName.value != "")
-        addImageButton.style.display = "block";
-        else
-        addImageButton.style.display = "none";
-    }
 
 
     document.getElementById('uploadMainPicP').onclick = function(){
@@ -1231,6 +1364,8 @@
         && evt.target.className != "offerPic"
         && evt.target.id != "addToOfferImages"
         && evt.target.id != "DelOfferImage"
+        && evt.target.id != "EditOfferImage"
+        && evt.target.id != "EditOfferImageText"
         && evt.target.id != "addToOfferImagesText"){
             allOfferImage.style.display = "none";
         }
@@ -1252,6 +1387,12 @@
             addOfferImage.value = document.getElementById(evt.target.id).offerImage;
             addOfferText.value = document.getElementById(evt.target.id).offerText;
             addOfferPrise.value = document.getElementById(evt.target.id).offerPrise;
+        }
+        if(evt.target.className == "offerPic"
+        && evt.target.tagName != "P"){
+            DelOfferImage.style.display = "none";
+            EditOfferImage.style.display = "none";
+            EditOfferImageText.style.display = 'none';
         }
     }
 
@@ -1330,8 +1471,6 @@
 
     document.getElementById('addToOfferImages').onclick = function(){
         if(addToOfferImages.innerHTML == "Add image"){
-            addToOfferImages.innerHTML = "Upload";
-            addToOfferImagesText.style.display = "block";
             offerImageFile.click();
         }
         else{
@@ -1341,6 +1480,24 @@
             }
             else{
                 addToOfferImagesText.focus();
+            }
+        }
+    }
+
+
+    document.getElementById('offerImageFile').onchange = function(){
+        if(offerImageFile.value != ""){
+            if(offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.jpg'
+            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.bmp'
+            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.gif'
+            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.png'
+            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == 'jpeg'){
+                addToOfferImages.innerHTML = "Upload";
+                addToOfferImages.style.background = "rgb(68, 131, 49)";
+                addToOfferImagesText.style.display = "block";
+            }
+            else{
+                alert('File type is not allowed');
             }
         }
     }
@@ -1374,19 +1531,44 @@
         if(evt.target.className == "offerPic"
         && evt.target.tagName == "P"){
             offerImage = evt.target.id;
+            EditOfferImageText.value = evt.target.id.substr(0, evt.target.id.length-4);
             DelOfferImage.style.display = "block";
+            EditOfferImage.style.display = "block";
             DelOfferImage.style.top = document.getElementById(evt.target.id).offsetTop - DelOfferImage.offsetHeight + 'px';
+            EditOfferImage.style.top = document.getElementById(evt.target.id).offsetTop - DelOfferImage.offsetHeight + 'px';
+            EditOfferImageText.style.top = document.getElementById(evt.target.id).offsetTop - DelOfferImage.offsetHeight + 30 + 'px';
             DelOfferImage.style.left = document.getElementById(evt.target.id).offsetLeft + 'px';
+            EditOfferImage.style.left = document.getElementById(evt.target.id).offsetLeft + 70 + 'px';
+            EditOfferImageText.style.left = document.getElementById(evt.target.id).offsetLeft + 'px';
         }
     });
+
+
+
+    document.getElementById('EditOfferImageText').oninput = function(){
+        if(EditOfferImageText.value == "")
+        EditOfferImage.innerHTML = "Edit";
+        else
+        EditOfferImage.innerHTML = "OK";
+    }
+
+
+    document.getElementById('EditOfferImage').onclick = function(){
+        if(EditOfferImage.innerHTML == "Edit"){
+            EditOfferImageText.style.display = 'block';
+            EditOfferImageText.focus();
+        }
+        else{
+            window.location.href = "/editOfferImage/" + offerImage + '/' + EditOfferImageText.value + '.jpg';
+            EditOfferImage.style.display = "none";
+        }
+    }
 
 
     document.getElementById('DelOfferImage').onclick = function(){
         var link = "/delOfferImage/" + offerImage;
         window.location.href = link.substr(0, link.length-4);
-        setTimeout(function(){
-            window.location.reload();
-        }, 1000);
+        DelOfferImage.style.display = "none";
     }
 
 

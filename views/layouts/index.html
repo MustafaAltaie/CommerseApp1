@@ -59,15 +59,13 @@
         </div>
 
         <div id="section3">
+            {{#each employeeList}}
+            <input type="hidden" value="{{this._id}}" class="employee_IdDB">
+            <input type="hidden" value="{{this.name}}" class="employeeNameDB">
+            <input type="hidden" value="{{this.info}}" class="employeeInfoDB">
+            {{/each}}
             <div id="employeePicContainer">
                 <div id="employeePicContainerSmall">
-                    <img src="" id="addEmployee" class="employeePic">
-                    <img src="images/employee1.jpg" id="employee1" class="employeePic">
-                    <img src="images/employee2.jpg" id="employee2" class="employeePic">
-                    <img src="images/employee3.jpg" id="employee3" class="employeePic">
-                    <img src="images/employee4.jpg" id="employee4" class="employeePic">
-                    <img src="images/employee5.jpg" id="employee5" class="employeePic">
-                    <img src="images/employee6.jpg" id="employee6" class="employeePic">
                     <img src="" id="addEmployee" class="employeePic">
                 </div>
             </div>
@@ -75,13 +73,6 @@
                 <b id="employeeRight">></b>
                 <b id="employeeLeft"><</b>
                 <p class="employeeInfo" id="employeeInfo0" style="display: none"></p>
-                <p class="employeeInfo" id="employeeInfo1" style="display: none">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo2" style="display: none">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto!</p>
-                <p class="employeeInfo" id="employeeInfo3" style="display: none">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis!</p>
-                <p class="employeeInfo" id="employeeInfo4" style="display: none">4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo5" style="display: none">5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit !doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo6" style="display: none">6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo id repellat omnis doloremque rem eos quae officia fuga quam dolores doloribus ad, fugit quas corporis dicta placeat eaque architecto!doloribus ad, fugit quas corporis dicta placeat eaque architectodoloribus ad, fugit quas corporis dicta placeat eaque architecto</p>
-                <p class="employeeInfo" id="employeeInfo7" style="display: none"></p>
             </div>
             <h1>Our Employees</h1>
             <h3>Don't hesitate to <u style="color: rgb(155, 110, 42); font-weight: bold; font-size: 20px">contact us</i></h3>
@@ -182,32 +173,7 @@
                     </div>
                     <div id="aboutSecP2">
                         <h1>Meet the team</h1>
-                        <div id="aboutSecP2Small">
-                            <div>
-                                <img src="images/employee1.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee2.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee3.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee4.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee5.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                            <div>
-                                <img src="images/employee6.jpg">
-                                <p>Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i></p>
-                            </div>
-                        </div>
+                        <div id="aboutSecP2Small"></div>
                     </div>
                 </div>
             </div>
@@ -333,7 +299,7 @@
             if(window.matchMedia('(min-width: 1024px)').matches)
             navBar.style.borderRadius = "50px";
         }
-        if(document.documentElement.scrollTop >= section2.offsetTop){
+        if(document.documentElement.scrollTop >= section2.offsetTop - 300){
             if(offerRotatePerm == 1){
                 offerRotatePerm = 0;
                 offerRotate();
@@ -398,9 +364,13 @@
         setHomePic(swipeToCount);
     }
 
-
-
     var imgCount = 5;
+
+    setTimeout(function(){
+        swipeTo('right');
+        imgCount = 1;
+    }, 0);
+
     setInterval(function(){
         imgCount++;
         if(imgCount >= 5){
@@ -459,6 +429,57 @@
 
 
 
+
+    for(i = 0; i < document.getElementsByClassName('employee_IdDB').length; i++){
+        var imgName = document.getElementsByClassName('employeeNameDB')[i].value;
+        var img = document.createElement('img');
+        img.src = 'images/Employees/' + imgName + '.jpg';
+        img.id = img.id = 'employee' + parseInt(i + 1);
+        img.className = 'employeePic';
+        employeePicContainerSmall.appendChild(img);
+        createEmployeeInfo(i);
+        if(i == document.getElementsByClassName('employee_IdDB').length-1){
+            var addImg = document.createElement('img');
+            addImg.src = "";
+            addImg.id = "addEmployee";
+            addImg.className = 'employeePic';
+            employeePicContainerSmall.appendChild(addImg);
+        }
+    }
+
+    function createEmployeeInfo(i){
+        var p = document.createElement('p');
+        p.className = 'employeeInfo';
+        p.id = 'employeeInfo' + parseInt(i + 1);
+        p.style.display = 'none';
+        p.innerHTML = document.getElementsByClassName('employeeInfoDB')[i].value;
+        employeeInfoContainer.appendChild(p);
+        if(i == document.getElementsByClassName('employee_IdDB').length-1){
+            var pp = document.createElement('p');
+            pp.className = 'employeeInfo';
+            pp.id = 'employeeInfo' + parseInt(i + 1);
+            pp.style.display = 'none';
+            employeeInfoContainer.appendChild(pp);
+        }
+    }
+
+
+
+    for(i = 0; i < document.getElementsByClassName('employee_IdDB').length; i++){
+        var imgName = document.getElementsByClassName('employeeNameDB')[i].value;
+        var div = document.createElement('div');
+        var img = document.createElement('img');
+        img.src = 'images/Employees/' + imgName + '.jpg';
+        var p = document.createElement('p');
+        p.innerHTML = "Lorem ipsum dolor sit<br><i>amet consectetur adipisicing elit</i>";
+        div.appendChild(img);
+        div.appendChild(p);
+        aboutSecP2Small.appendChild(div);
+    }
+
+
+
+
     var employeeSwipeCount = 1;
     var EmpSwipeRPerm = 1;
     var EmpSwipeLPerm = 1;
@@ -507,10 +528,6 @@
             EmpSwipeRPerm = 1;
             empSwipeSet(employeePicSwipeSize, employeeSwipeCount);
             currentSwipe = '';
-        }
-
-        if(evt.target.className == "employeePic" && evt.target.id== "addEmployee"){
-            alert()
         }
 
         if(evt.target.id.substr(0, evt.target.id.length-1) == "employee"){
@@ -951,7 +968,7 @@
 
     for(i = 0; i < document.getElementsByClassName('offer_idDB').length; i++){
         var offer = document.createElement('div');
-        offer.id = "offer" + i + 1;
+        offer.id = "offer" + parseInt(i + 1);
         offer.className = "offer";
         offer.offerAddress = document.getElementsByClassName('offer_idDB')[i].value;
             var h1 = document.createElement('h1');
@@ -975,7 +992,13 @@
     var thisZ = "";
     var thisOffer = "";
 
+    var thisIdRotatePic;
+
     document.getElementById('section2').onmousemove = function(evt){
+        if(thisIdRotatePic != evt.target.id && evt.target.className == "offer"){
+            startOfferPicLR(evt.target.id);
+            thisIdRotatePic = evt.target.id
+        }
         if(evt.target.className == "offer"){
             if(evt.target.id != thisOffer && thisOffer == ""){
                 setOfferStyle(evt.target.id);
@@ -983,16 +1006,16 @@
             else{
                 document.getElementById(thisOffer).style.transform = thisRotate;
                 document.getElementById(thisOffer).style.zIndex = thisZ;
-                document.getElementById(thisOffer).style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
                 setOfferStyle(evt.target.id);
             }
         }
         else{
             document.getElementById(thisOffer).style.zIndex = thisZ;
             document.getElementById(thisOffer).style.transform = thisRotate;
-            document.getElementById(thisOffer).style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
+            thisIdRotatePic = '';
         }
     }
+
 
     function setOfferStyle(n){
         thisOffer = n;
@@ -1000,9 +1023,7 @@
         thisZ = document.getElementById(n).style.zIndex;
         document.getElementById(n).style.zIndex = 100;
         document.getElementById(n).style.transform = "rotate(0deg)";
-        document.getElementById(n).style.boxShadow = "0 0 30px #000";
     }
-
 
 
 
@@ -1019,6 +1040,31 @@
             document.getElementsByClassName('offer')[i].style.transform = "rotate(" + n + "deg)";
             document.getElementsByClassName('offer')[i].style.zIndex = rnd;
         }
+    }
+
+
+
+
+
+    function rotateOfferImages(n){
+        if(document.getElementById(n).getElementsByTagName('img')[0].style.objectPosition != 'right 0%')
+        document.getElementById(n).getElementsByTagName('img')[0].style.objectPosition = 'right 0%';
+        else document.getElementById(n).getElementsByTagName('img')[0].style.objectPosition = 'left 0%';
+    }
+
+
+
+
+    function offerPicLR(n){
+        rotateOfferImages(n);
+    }
+
+
+
+    function startOfferPicLR(n){
+        setTimeout(function(){
+            offerPicLR(n);
+        }, 10);
     }
 
 </script>

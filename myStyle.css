@@ -27,14 +27,22 @@
     }
     body #channelContainer{
         width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
     }
     body .channel{
         width: 50px;
         height: 50px;
         margin: 5px;
     }
+    body #offerContainer{
+        padding: 100px 20px;
+    }
     body .offer{
         width: 450px;
+    }
+    body .offer img{
+        height: 200px;
     }
     body #employeePicContainerSmall{
         width: 800px;
@@ -287,20 +295,6 @@
         background: rgb(30, 57, 71);
     }
 
-    body #addImage{
-        font-size: 40px;
-        background: #222;
-        padding: 20px 40px;
-    }
-
-    body #addImageForm{
-        top: 100px;
-    }
-    body #addImageForm input, body #addImageForm button{
-        width: 250px;
-        font-size: 40px;
-    }
-
     body #productItems::-webkit-scrollbar{
         display: none;
     }
@@ -327,6 +321,8 @@
         font-size: 35px;
         padding: 30px 0;
     }
+
+    
 
     body #newPriseCheckForm{
         top: 130%;
@@ -513,7 +509,7 @@ ul a:hover{
     max-width: 100%;
     height: 550px;
     object-fit: cover;
-    object-position: left 0%;
+    object-position: left 30%;
     opacity: 0;
     transition: opacity 2s, object-position 25s;
     pointer-events: none;
@@ -534,11 +530,10 @@ ul a:hover{
 #channelContainer{
     position: absolute;
     top: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 1%;
     display: flex;
     justify-content: center;
-    background: #252525;
+    background: #111;
     border-radius: 20px;
     border: solid 1px #aaa;
 }
@@ -565,14 +560,14 @@ ul a:hover{
     font-size: 50px;
     color: rgb(197, 137, 68);
     background: rgba(0, 0, 0, 0.2);
-    padding: 30px 0;
+    padding: 20px 0;
     font-family: 'Parisienne', cursive;
 }
 #offerContainer{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 100px 20px;
+    padding: 100px;
 }
 .offer{
     width: 235px;
@@ -593,12 +588,13 @@ ul a:hover{
 }
 .offer img{
     width: 80%;
-    height: 120px;
+    height: 150px;
     border: solid 1px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     object-fit: cover;
     margin-bottom: 5px;
     pointer-events: none;
+    transition: 2s;
 }
 .offer p{
     color: #aaa;
@@ -623,6 +619,7 @@ ul a:hover{
 
 
 #section3{
+    position: relative;
     background: rgb(61, 51, 39);
     background-image: url('images/yellowBackground.jpg');
     padding: 70px 0;
@@ -698,6 +695,38 @@ ul a:hover{
     text-shadow: 1px 1px 1px #000;
 }
 
+#addEmployeeForm{
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+}
+#addEmployeeForm input, #addEmployeeForm p, #addEmployeeForm textarea{
+    width: 100%;
+    border: solid 1px #000;
+    border-radius: 50px;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    resize: none;
+}
+#addEmployeeForm textarea{
+    border-radius: 30px;
+    height: 100px;
+    margin: 10px 0;
+}
+#addEmployeeForm textarea::-webkit-scrollbar{
+    display: none;
+}
+#addEmployeeForm p{
+    background: #972;
+}
+
 
 
 
@@ -719,35 +748,6 @@ ul a:hover{
     display: flex;
     cursor: default;
     min-width: 800px;
-}
-#addImage{
-    position: absolute;
-    left: 50%;
-    top: -20px;
-    transform: translateX(-50%);
-    font-size: 20px;
-    cursor: pointer;
-    background: #111;
-    color: #fff;
-    font-weight: normal;
-    padding: 5px 20px;
-    border-radius: 0 0 5px 5px;
-}
-#addImageForm{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-    top: 20px;
-    text-align: center;
-}
-#addImageForm input, #addImageForm button{
-    width: 150px;
-    padding: 5px 0;
-    text-align: center;
-    border: solid 1px #000;
-    margin: 2px;
-    font-weight: bold;
 }
 #productItems{
     width: 80%;
@@ -1043,8 +1043,11 @@ ul a:hover{
     filter: grayscale(40%);
 }
 #aboutSecP2Small p{
-    font-weight: bold;
-    padding: 10px 0;
+    max-height: 85px;
+    overflow-y: scroll;
+}
+#aboutSecP2Small p::-webkit-scrollbar{
+    display: none;
 }
 #aboutSecP2Small i{
     color: #aaa;
@@ -1614,11 +1617,26 @@ add{
 #allOfferImage p:active{
     background: rgba(0, 0, 0, 0.7);
 }
-#allOfferImage b{
+#allOfferImage b, #allOfferImage u{
     position: absolute;
     color: red;
     font-weight: normal;
     display: none;
+    cursor: pointer;
+}
+#allOfferImage u{
+    color: #fa5;
+}
+#allOfferImage textarea{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 40px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+    border: none;
 }
 #allOfferImage button{
     position: absolute;
