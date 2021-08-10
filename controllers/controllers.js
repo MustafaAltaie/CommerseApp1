@@ -6,6 +6,7 @@ const Item = mongoose.model('item');
 const NewOffer = mongoose.model('offer');
 const PriseCheck = mongoose.model('priseOption');
 const NewEmployee = mongoose.model('employee');
+const NewOrder = mongoose.model('order');
 const fs = require('fs');
 
 
@@ -220,6 +221,45 @@ router.get('/deleteEmployee/:id/:imgName', function(req, res){
     NewEmployee.findByIdAndRemove(req.params.id, function(){
         fs.unlinkSync('images/Employees/' + req.params.imgName + '.jpg', function(){});
         res.redirect('/manage');
+    });
+});
+
+
+
+router.post('/sendOrder', function(req, res){
+    var newOrder = new NewOrder();
+    newOrder.personName = req.body.personName;
+    newOrder.clientPhoneNumber = req.body.clientPhoneNumber;
+    newOrder.clientEmail = req.body.clientEmail;
+    newOrder.orderDate = req.body.orderDate;
+    newOrder.numOfOrder = req.body.numOfOrder;
+    newOrder.orderImage = req.body.orderImage;
+    newOrder.orderN = req.body.orderN;
+    newOrder.orderPrise = req.body.orderPrise;
+    newOrder.orderText = req.body.orderText;
+    newOrder.totalPrise = req.body.totalPrise;
+    newOrder.save(function(){
+        res.redirect('/');
+    });
+});
+
+
+router.get('/orders', function(req, res){
+    NewOrder.find(function(err, data){
+        if(!err){
+            res.render('./layouts/orders', {
+                orderList: data
+            });
+        }
+        else console.log(err)
+    }).lean();
+});
+
+
+
+router.get('/deleteOrder/:id', function(req, res){
+    NewOrder.findByIdAndRemove(req.params.id, function(){
+        res.redirect('/orders');
     });
 });
 

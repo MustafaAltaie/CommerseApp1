@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Orders</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Thasadith:ital@1&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        {{#each orderList}}
+        <input type="hidden" value="{{this._id}}" class="_id">
+        <input type="hidden" value="{{this.personName}}" class="clientName">
+        <input type="hidden" value="{{this.clientPhoneNumber}}" class="phoneNumber">
+        <input type="hidden" value="{{this.clientEmail}}" class="email">
+        <input type="hidden" value="{{this.orderDate}}" class="orderDate">
+        <input type="hidden" value="{{this.numOfOrder}}" class="numOfOrder">
+        <input type="hidden" value="{{this.orderImage}}" class="orderImage">
+        <input type="hidden" value="{{this.orderN}}" class="orderN">
+        <input type="hidden" value="{{this.orderPrise}}" class="orderPrise">
+        <input type="hidden" value="{{this.orderText}}" class="orderText">
+        <input type="hidden" value="{{this.totalPrise}}" class="totalPrise">
+        {{/each}}
+
+
+
+        <h1 id="DeleteOffer">Delete</h1>
+    </body>
+
+    <style>
+        *{
+            margin: 0;
+            font-family: 'Thasadith', sans-serif;
+            font-size: 16px;
+            user-select: none;
+            text-decoration: none;
+            outline: none;
+        }
+        #DeleteOffer{
+            position: absolute;
+            background: #a00;
+            color: white;
+            padding: 10px 30px;
+            font-weight: normal;
+            display: none;
+        }
+        .clients{
+            width: 500px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .mainClientInfo{
+            background: rgb(77, 77, 77);
+            color: white;
+            padding: 10px 30px;
+            pointer-events: none;
+            border: solid 1px #000;
+        }
+        .mainClientInfo p{
+            border-bottom: solid 1px #000;
+            margin: 5px 0;
+        }
+        .mainClientInfo b{
+            color: rgb(255, 222, 58);
+            font-weight: normal;
+        }
+        .itemDetail{
+            padding: 20px 30px;
+            pointer-events: none;
+            border-right: solid 1px #000;
+            border-left: solid 1px #000;
+        }
+        .itemDetail p{
+            font-weight: normal;
+        }
+        .itemDetail b{
+            color: #222;
+        }
+        .itemDetail img{
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            float: right;
+            border-radius: 10px;
+            border: solid 1px #000;
+        }
+        .clients h1{
+            text-align: center;
+            font-size: 20px;
+            pointer-events: none;
+            margin-bottom: 50px;
+            padding: 10px 0;
+            border-right: solid 1px #000;
+            border-left: solid 1px #000;
+            border-bottom: solid 1px #000;
+            background: rgb(77, 77, 77);
+            color: rgb(255, 222, 58);
+            font-weight: normal;
+        }
+    </style>
+
+    <script>
+
+        var socket = io.connect('https://mustafaaltaiecommerce.herokuapp.com/');
+
+        socket.on('newOrder', function(){
+            window.location.reload();
+        });
+
+
+        var currentId = '';
+
+        document.addEventListener('contextmenu', function(evt){
+            if(evt.target.className == "clients"){
+                evt.preventDefault();
+                currentId = evt.target.id;
+                DeleteOffer.style.display = "block";
+                DeleteOffer.style.top = document.getElementById(currentId).offsetTop + 'px';
+                DeleteOffer.style.left = document.getElementById(currentId).offsetWidth - DeleteOffer.offsetWidth + 'px';
+            }
+        });
+
+        document.addEventListener('click', function(evt){
+            if(evt.target.id != "DeleteOffer"){
+                DeleteOffer.style.display = "none";
+            }
+            else{
+                var orderAddress = document.getElementById(currentId).idAddress;
+                window.location.href = '/deleteOrder/' + orderAddress;
+                DeleteOffer.style.display = "none";
+            }
+        });
+
+
+        var clientName = document.getElementsByClassName('clientName').length;
+
+        for(i = 0; i < clientName; i++){
+            for(j = 0; j < document.getElementsByClassName('numOfOrder')[i].value; j++){
+                var item = ({
+                    n: j,
+                    name: document.getElementsByClassName('clientName')[i].value,
+                    phoneNumber: document.getElementsByClassName('phoneNumber')[i].value,
+                    email: document.getElementsByClassName('email')[i].value,
+                    timeDate: document.getElementsByClassName('orderDate')[i].value,
+                    imgLink: 'images/products/' + document.getElementsByClassName('orderImage')[i].value.split(',')[j],
+                    nOfThisItem: document.getElementsByClassName('orderN')[i].value.split(',')[j],
+                    prise: document.getElementsByClassName('orderPrise')[i].value.split(',')[j],
+                    text: document.getElementsByClassName('orderText')[i].value.split(',')[j],
+                    totalPrise: document.getElementsByClassName('totalPrise')[i].value,
+                    ordernm: i,
+                    idAddress: document.getElementsByClassName('_id')[i].value
+                });
+                createOrder(item);
+            }
+        }
+
+
+        function createOrder(item){
+            var mainConrainer = document.createElement('div');
+            mainConrainer.id = 'client' + parseInt(item.ordernm+1);
+            mainConrainer.idAddress = item.idAddress;
+            mainConrainer.className = 'clients';
+            if(item.n <= 0){
+                    var clientInfo = document.createElement('div');
+                    clientInfo.id = 'mainClientInfo' + item.n;
+                    clientInfo.className = 'mainClientInfo';
+                        var name = document.createElement('p');
+                        name.id = 'name' + item.n;
+                        name.innerHTML = '<b>Customer Name: </b>' + item.name;
+                        name.className = 'customerName';
+                        var number = document.createElement('p');
+                        number.id = 'number' + item.n;
+                        number.innerHTML = '<b>Customer Number: </b>' + item.phoneNumber;
+                        var email = document.createElement('p');
+                        email.id = 'email' + item.n;
+                        email.innerHTML = '<b>Customer Email: </b>' + item.email;
+                        var orderDate = document.createElement('p');
+                        orderDate.id = 'orderDate' + item.n;
+                        orderDate.innerHTML = '<b>Order Date: </b>' + item.timeDate;
+                    clientInfo.appendChild(name);
+                    clientInfo.appendChild(number);
+                    clientInfo.appendChild(email);
+                    clientInfo.appendChild(orderDate);
+                mainConrainer.appendChild(clientInfo);
+                createPerm = 0;
+            }
+                var itemDetail = document.createElement('div');
+                itemDetail.id = 'itemDetail' + item.n;
+                itemDetail.className = 'itemDetail'
+                    var img = document.createElement('img');
+                    img.src = item.imgLink;
+                    img.id = 'image' + item.n;
+                    var nmOfItms = document.createElement('p');
+                    nmOfItms.id = 'numberOfitemOrder' + item.n;
+                    nmOfItms.innerHTML = '<b>Number Of Item: </b>' + item.nOfThisItem;
+                    var prise = document.createElement('p');
+                    prise.id = 'itemPrise' + item.n;
+                    prise.innerHTML = '<b>Item Total Prise: </b>' + item.prise;
+                    var itemText = document.createElement('p');
+                    itemText.id = 'itemText' + item.n;
+                    itemText.innerHTML = '<b>Item Details: </b>' + item.text
+                itemDetail.appendChild(img);
+                itemDetail.appendChild(nmOfItms);
+                itemDetail.appendChild(prise);
+                itemDetail.appendChild(itemText);
+            mainConrainer.appendChild(itemDetail);
+            if(item.n >= document.getElementsByClassName('numOfOrder')[item.ordernm].value-1){
+                    var h1 = document.createElement('h1');
+                    h1.id = 'totalPrise' + item.n;
+                    h1.innerHTML = 'Total Prise: ' + item.totalPrise;
+                mainConrainer.appendChild(h1);
+            } 
+            document.getElementsByTagName('body')[0].appendChild(mainConrainer);
+        }
+    </script>
+</html>

@@ -213,7 +213,7 @@
                         <div>
                             <b id="totalText">TOTAL: 0$</b>
                         </div>
-                        <button onclick="personalInfo.style.display = 'flex'">CHECK OUT</button>
+                        <button onclick="personalInfo.style.display='flex'">CHECK OUT</button>
                     </div>
                 </div>
             </div>
@@ -249,10 +249,11 @@
         </div>
 
         <div id="buyPage">
-            <img src="images/products/manWatch3.jpg" id="buyImg">
+            <img src="" id="buyImg">
             <div>
-                <h1 id="buyPagePrise">99$</h1>
-                <p id="buyPageText">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore accusantium officiis voluptatum, quas, natus eius doloremque blanditiis omnis corrupti recusandae autem officia. Id nam commodi veniam distinctio ex quasi minus?</p>
+                <h1 id="buyPagePrise"></h1>
+                <p id="buyPageText"></p>
+                <input type="hidden" id="buyPageTextImageName">
                 <input id="buyPageInput" type="number" value=1 min=1><br>
                 <i style="background: #050" onclick="checkout()">Check out</i>
                 <i onclick="checkout(); openOtherSection('productsSection')">Continue shopping</i>
@@ -267,16 +268,30 @@
                 <input id="clientName" placeholder="Your name" spellcheck="false">
                 <input id="clientNumber" placeholder="Your number" spellcheck="false">
                 <input id="clientEmail" placeholder="Your email" spellcheck="false">
-                <button id="sendOrder">Complete purchase</button>
+                <button id="sendOrder" onclick=prepareOrder()>Complete purchase</button>
                 <b onclick="personalInfo.style.display = 'none'">X</b>
             </div>
         </div>
+
+        <form action="sendOrder" method="POST" enctype="multipart/form-data" style="display: none">
+            <input name="personName" id="PersonName">
+            <input name="clientPhoneNumber" id="phoneNumber">
+            <input name="clientEmail" id="personEmail">
+            <input name="orderDate" id="orderDate">
+            <input name="numOfOrder" id="numOfOrder">
+            <textarea name="orderImage" id="orderImage"></textarea>
+            <input name="orderN" id="orderN">
+            <input name="orderPrise" id="orderPrise">
+            <textarea name="orderText" id="orderText"></textarea>
+            <input name="totalPrise" id="totalPriseOrder">
+            <button id="sendOrderSubmit"></button>
+        </form>
     </body>
 
 
 <script>
 
-    var socket = io.connect('mustafaaltaiecommerce.herokuapp.com/');
+    var socket = io.connect('https://mustafaaltaiecommerce.herokuapp.com/');
 
     socket.on('reload', function(){
         window.location.reload();
@@ -805,6 +820,7 @@
         buyPage.style.display = "flex";
         buyImg.src = n.image;
         buyPageText.innerHTML = n.text;
+        buyPageTextImageName.value = n.imageName;
         buyPagePrise.innerHTML = n.prise + '$';
         currentPrise = n.prise;
     }
@@ -814,7 +830,8 @@
             var itemToBuy = ({
                 image: document.getElementById(evt.target.className).imgSrc,
                 text: document.getElementById(evt.target.className).text,
-                prise: document.getElementById(evt.target.className).prise
+                prise: document.getElementById(evt.target.className).prise,
+                imageName: document.getElementById(evt.target.className).imgSrc.substr(16, document.getElementById(evt.target.className).imgSrc.length)
             });
             buyItem(itemToBuy);
         }
@@ -866,7 +883,8 @@
             image: buyImg.src,
             prise: buyPagePrise.innerHTML,
             number: buyPageInput.value,
-            text: buyPageText.innerHTML
+            text: buyPageText.innerHTML,
+            imageName: buyPageTextImageName.value
         });
         itemToCart(itm);
         closeBuyPage();
@@ -896,6 +914,7 @@
         var mainDiv = document.createElement('div');
         mainDiv.id = "cartItem" + cartCounter;
         mainDiv.className = "cartItem";
+        mainDiv.imageName = buyPageTextImageName.value;
             var img = document.createElement('img');
             img.src = itm.image;
             var prs = document.createElement('p');
@@ -921,6 +940,35 @@
         showHideCartNm();
         cartCounter++;
     }
+
+
+    function prepareOrder(){
+        if(clientName.value != "" && clientNumber.value != "" && clientEmail.value != ""){
+            var numberOfOrder = document.getElementsByClassName('cartItem').length;
+            numOfOrder.value = numberOfOrder;
+            PersonName.value = clientName.value;
+            phoneNumber.value = clientNumber.value;
+            personEmail.value = clientEmail.value;
+            totalPriseOrder.value = totalText.innerHTML;
+            var utc = new Date().toLocaleString();
+            orderDate.value = utc;
+            for(i = 1; i <= numberOfOrder; i++){
+                orderImage.value = orderImage.value + document.getElementsByClassName('cartItem')[i-1].imageName + ',';
+                orderN.value = orderN.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('input')[0].value + ',';
+                orderText.value = orderText.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('i')[0].innerHTML + ',';
+                orderPrise.value = orderPrise.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('p')[0].innerHTML + ',';
+            }
+            sendOrderSubmit.click();
+            personalInfo.style.display = 'none';
+            socket.emit('newOrder');
+        }
+        else{
+            alert('Please fill all your details');
+        }
+    }
+
+
+
 
     document.addEventListener('input', function(evt){
         if(evt.target.id.substr(0, 5) == "input"){

@@ -31,3 +31,18 @@ var newEmployee = new mongoose.Schema({
     info: {type: String}
 });
 mongoose.model('employee', newEmployee);
+
+
+var newOrder = new mongoose.Schema({
+    personName: {type: String},
+    clientPhoneNumber: {type: String},
+    clientEmail: {type: String},
+    orderDate: {type: String},
+    numOfOrder: {type: String},
+    orderImage: {type: String},
+    orderN: {type: String},
+    orderPrise: {type: String},
+    orderText: {type: String},
+    totalPrise: {type: String}
+});
+mongoose.model('order', newOrder);

@@ -18,6 +18,9 @@ io.on('connection', function(socket){
     socket.on('reload', function(){
         io.sockets.emit('reload');
     });
+    socket.on('newOrder', function(){
+        io.sockets.emit('newOrder');
+    });
 });
 
 app.use(bodyP.urlencoded({
