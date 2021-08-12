@@ -146,10 +146,10 @@
                     </div>
                 </div>
                 <div id="contactUsInputsContainer">
-                    <input placeholder="Your name" spellcheck="false">
-                    <input placeholder="Your number" spellcheck="false">
-                    <textarea placeholder="Your message" spellcheck="false"></textarea>
-                    <button>Send my message</button>
+                    <input id="contactUsName" placeholder="Your name" spellcheck="false">
+                    <input id="contactUsNumber" placeholder="Your number" spellcheck="false">
+                    <textarea id="contactUsMessage" placeholder="Your message" spellcheck="false"></textarea>
+                    <button id="sendMessageButton">Send my message</button>
                 </div>
                 <div id="contactUsSMediaIcon">
                     <p>Follow us on social media</p>
@@ -266,7 +266,7 @@
             <div id="personalInfoForm">
                 <p>Personal Information</p>
                 <input id="clientName" placeholder="Your name" spellcheck="false">
-                <input id="clientNumber" placeholder="Your number" spellcheck="false">
+                <input type="number" id="clientNumber" placeholder="Your number" spellcheck="false">
                 <input id="clientEmail" placeholder="Your email" spellcheck="false">
                 <button id="sendOrder" onclick=prepareOrder()>Complete purchase</button>
                 <b onclick="personalInfo.style.display = 'none'">X</b>
@@ -944,23 +944,32 @@
 
     function prepareOrder(){
         if(clientName.value != "" && clientNumber.value != "" && clientEmail.value != ""){
-            var numberOfOrder = document.getElementsByClassName('cartItem').length;
-            numOfOrder.value = numberOfOrder;
-            PersonName.value = clientName.value;
-            phoneNumber.value = clientNumber.value;
-            personEmail.value = clientEmail.value;
-            totalPriseOrder.value = totalText.innerHTML;
-            var utc = new Date().toLocaleString();
-            orderDate.value = utc;
-            for(i = 1; i <= numberOfOrder; i++){
-                orderImage.value = orderImage.value + document.getElementsByClassName('cartItem')[i-1].imageName + ',';
-                orderN.value = orderN.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('input')[0].value + ',';
-                orderText.value = orderText.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('i')[0].innerHTML + ',';
-                orderPrise.value = orderPrise.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('p')[0].innerHTML + ',';
+            if(clientEmail.value.includes('@outlook.com')
+            || clientEmail.value.includes('@gmail.com')
+            || clientEmail.value.includes('@yahoo.com')
+            || clientEmail.value.includes('@iCloud.com')
+            || clientEmail.value.includes('@mail.com')){
+                var numberOfOrder = document.getElementsByClassName('cartItem').length;
+                numOfOrder.value = numberOfOrder;
+                PersonName.value = clientName.value;
+                phoneNumber.value = clientNumber.value;
+                personEmail.value = clientEmail.value;
+                totalPriseOrder.value = totalText.innerHTML;
+                var utc = new Date().toLocaleString();
+                orderDate.value = utc;
+                for(i = 1; i <= numberOfOrder; i++){
+                    orderImage.value = orderImage.value + document.getElementsByClassName('cartItem')[i-1].imageName + ',';
+                    orderN.value = orderN.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('input')[0].value + ',';
+                    orderText.value = orderText.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('i')[0].innerHTML + ',';
+                    orderPrise.value = orderPrise.value + document.getElementsByClassName('cartItem')[i-1].getElementsByTagName('p')[0].innerHTML + ',';
+                }
+                sendOrderSubmit.click();
+                personalInfo.style.display = 'none';
+                socket.emit('newOrder');
             }
-            sendOrderSubmit.click();
-            personalInfo.style.display = 'none';
-            socket.emit('newOrder');
+            else{
+                alert('Email is not valid');
+            }
         }
         else{
             alert('Please fill all your details');
@@ -1113,6 +1122,13 @@
         setTimeout(function(){
             offerPicLR(n);
         }, 10);
+    }
+
+
+    document.getElementById('sendMessageButton').onclick = function(){
+        if(contactUsMessage.value.includes("@")){
+            alert()
+        }
     }
 
 </script>
