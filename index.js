@@ -21,6 +21,9 @@ io.on('connection', function(socket){
     socket.on('newOrder', function(){
         io.sockets.emit('newOrder');
     });
+    socket.on('newMessage', function(){
+        io.sockets.emit('newMessage');
+    });
 });
 
 app.use(bodyP.urlencoded({

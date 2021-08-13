@@ -7,6 +7,7 @@ const NewOffer = mongoose.model('offer');
 const PriseCheck = mongoose.model('priseOption');
 const NewEmployee = mongoose.model('employee');
 const NewOrder = mongoose.model('order');
+const NewMessage = mongoose.model('message');
 const fs = require('fs');
 
 
@@ -192,18 +193,6 @@ router.get('/deleteOffer/:id', function(req, res){
 
 
 
-router.get('/m', function(req, res){
-    fs.readdir('images/products/', function(err, files){
-        files.forEach(function(){
-            res.render('./layouts/m', {
-                list: files,
-                length: files.length
-            });
-        });
-    });
-});
-
-
 router.post('/addEmployee', function(req, res){
     var newEmployee = new NewEmployee();
     newEmployee.name = req.body.employeeName;
@@ -260,6 +249,32 @@ router.get('/orders', function(req, res){
 router.get('/deleteOrder/:id', function(req, res){
     NewOrder.findByIdAndRemove(req.params.id, function(){
         res.redirect('/orders');
+    });
+});
+
+
+router.post('/contactUs', function(req, res){
+    var newMessage = new NewMessage();
+    newMessage.name = req.body.name;
+    newMessage.number = req.body.number;
+    newMessage.message = req.body.message;
+    newMessage.save(function(){
+        res.redirect('/');
+    });
+});
+
+
+router.get('/messages', function(req, res){
+    NewMessage.find(function(err, data){
+        if(!err) res.render('./layouts/contactUs', {
+            messages: data
+        });
+    }).lean();
+});
+
+router.get('/deleteMessage/:id', function(req, res){
+    NewMessage.findByIdAndRemove(req.params.id, function(){
+        res.redirect('/messages');
     });
 });
 

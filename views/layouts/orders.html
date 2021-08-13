@@ -63,6 +63,9 @@
             font-weight: normal;
         }
         .itemDetail{
+            position: relative;
+            min-height: 120px;
+            max-height: 120px;
             padding: 20px 30px;
             pointer-events: none;
             border-right: solid 1px #000;
@@ -70,15 +73,18 @@
         }
         .itemDetail p{
             font-weight: normal;
+            width: 250px;
         }
         .itemDetail b{
             color: #222;
         }
         .itemDetail img{
+            position: absolute;
+            right: 20px;
+            top: 5px;
             width: 150px;
             height: 100px;
             object-fit: cover;
-            float: right;
             border-radius: 10px;
             border: solid 1px #000;
         }

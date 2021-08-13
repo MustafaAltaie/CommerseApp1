@@ -46,3 +46,11 @@ var newOrder = new mongoose.Schema({
     totalPrise: {type: String}
 });
 mongoose.model('order', newOrder);
+
+
+var contactUs = new mongoose.Schema({
+    name: {type: String},
+    number: {type: String},
+    message: {type: String}
+});
+mongoose.model('message', contactUs);

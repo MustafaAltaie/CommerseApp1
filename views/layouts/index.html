@@ -147,13 +147,13 @@
                 </div>
                 <div id="contactUsInputsContainer">
                     <input id="contactUsName" placeholder="Your name" spellcheck="false">
-                    <input id="contactUsNumber" placeholder="Your number" spellcheck="false">
+                    <input type="number" id="contactUsNumber" placeholder="Your number" spellcheck="false">
                     <textarea id="contactUsMessage" placeholder="Your message" spellcheck="false"></textarea>
                     <button id="sendMessageButton">Send my message</button>
                 </div>
                 <div id="contactUsSMediaIcon">
                     <p>Follow us on social media</p>
-                    <div style="display: flex; justify-content: center;">
+                    <div style="display: flex; justify-content: center">
                         <img src="images/fb.png">
                         <img src="images/insta.png">
                         <img src="images/linkedIn.png">
@@ -285,6 +285,14 @@
             <textarea name="orderText" id="orderText"></textarea>
             <input name="totalPrise" id="totalPriseOrder">
             <button id="sendOrderSubmit"></button>
+        </form>
+
+
+        <form action="contactUs" method="POST">
+            <input name="name" id="contactUsNameForm">
+            <input name="number" id="contactUsNumberForm">
+            <input name="message" id="contactUsMessageForm">
+            <button id="sendMessageB"></button>
         </form>
     </body>
 
@@ -977,6 +985,20 @@
     }
 
 
+    var specialChar = '!#$%&()*+,-./:;<=>?@[\]^_`{|}~" ';
+
+    document.getElementById('clientName').onchange = function(){
+        for(i = 0; i < specialChar.length-1; i++){
+            var n = specialChar.length - i - 1;
+            if(clientName.value.includes(specialChar.slice(i, specialChar.length-n))){
+                alert('Name must contain only letters');
+                clientName.value = "";
+                clientName.focus();
+            }
+        }
+    }
+
+
 
 
     document.addEventListener('input', function(evt){
@@ -1122,6 +1144,21 @@
         setTimeout(function(){
             offerPicLR(n);
         }, 10);
+    }
+
+
+
+    document.getElementById('sendMessageButton').onclick = function(){
+        if(contactUsName.value != "" && contactUsNumber.value != "" && contactUsMessage.value != ""){
+            contactUsNameForm.value = contactUsName.value;
+            contactUsNumberForm.value = contactUsNumber.value;
+            contactUsMessageForm.value = contactUsMessage.value;
+            socket.emit('newMessage');
+            sendMessageB.click();
+        }
+        else{
+            alert('Fill all the fields');
+        }
     }
 
 </script>
