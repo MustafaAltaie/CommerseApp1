@@ -666,11 +666,7 @@
 
     document.getElementById('employeeFile').onchange = function(){
         if(employeeFile.value != ""){
-            if(employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".jpg"
-            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".bmp"
-            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".png"
-            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == "jpeg"
-            || employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length) == ".gif"){
+            if(imageExt.includes(employeeFile.value.substr(employeeFile.value.length-4, employeeFile.value.length))){
                 addEmployeeSubmitP.innerHTML =  "Add Employee";
                 addEmployeeSubmitP.style.background = "rgb(68, 131, 49)";
                 employeeNameText.focus();
@@ -1111,11 +1107,7 @@
 
     document.getElementById('fileFile').onchange = function(){
         if(fileFile.value != ""){
-            if(fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.jpg'
-            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.bmp'
-            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.png'
-            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == '.gif'
-            || fileFile.value.substr(fileFile.value.length-4, fileFile.value.length) == 'jpeg'){
+            if(imageExt.includes(fileFile.value.substr(fileFile.value.length-4, fileFile.value.length))){
                 PText.style.background = "#0a0";
                 PText.innerHTML = "Add item";
             }
@@ -1299,12 +1291,26 @@
     document.getElementById('uploadMainPicP').onclick = function(){
         if(uploadMainPicP.innerHTML == "Upload Image"){
             mainPicPic.click();
-            uploadMainPicP.innerHTML = "Upload"
         }
         else{
             uploadMainPicB.click();
             uploadMainPicP.style.display = "none";
             socket.emit('reload');
+        }
+    }
+
+
+    var imageExt = '.jpg .bmp .png jpeg .gif';
+
+
+    document.getElementById('mainPicPic').onchange = function(){
+        if(mainPicPic.value != ""){
+            if(imageExt.includes(mainPicPic.value.substr(mainPicPic.value.length-4, mainPicPic.value.length))){
+                uploadMainPicP.innerHTML = "Upload";
+            }
+            else{
+                alert('File must be image');
+            }
         }
     }
 
@@ -1487,14 +1493,11 @@
 
     document.getElementById('offerImageFile').onchange = function(){
         if(offerImageFile.value != ""){
-            if(offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.jpg'
-            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.bmp'
-            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.gif'
-            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == '.png'
-            || offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length) == 'jpeg'){
+            if(imageExt.includes(offerImageFile.value.substr(offerImageFile.value.length-4, offerImageFile.value.length))){
                 addToOfferImages.innerHTML = "Upload";
                 addToOfferImages.style.background = "rgb(68, 131, 49)";
                 addToOfferImagesText.style.display = "block";
+                addToOfferImagesText.focus();
             }
             else{
                 alert('File type is not allowed');

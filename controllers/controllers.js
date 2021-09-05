@@ -240,7 +240,6 @@ router.get('/orders', function(req, res){
                 orderList: data
             });
         }
-        else console.log(err)
     }).lean();
 });
 
