@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>Order Sent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<html>
+    <body>
+        <div>
+            <h1 style="color: rgb(86, 238, 81)">We have received your purchase.</h1>
+            <h2 style="color: rgb(220, 220, 220)">Thanks Mr <b style="color: rgb(86, 238, 81)">{{clientName}}</b> for ordering from us.</h2>
+            <h2 style="color: rgb(220, 220, 220)">We will send you an order confirmation as soon as possible.</h2>
+        </div>
+    </body>
+</html>
+
+<style>
+    @media only screen and (max-width: 1024px){
+        body h1{
+            font-size: 70px;
+        }
+        body h2{
+            font-size: 40px;
+        }
+    }
+    *{
+        font-weight: normal;
+        font-family: 'Thasadith', sans-serif;
+    }
+    body{
+        background-image: url('images/signInUp2.jpg');
+    }
+    body div{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+</style>

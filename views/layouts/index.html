@@ -1154,6 +1154,7 @@
             contactUsNumberForm.value = contactUsNumber.value;
             contactUsMessageForm.value = contactUsMessage.value;
             socket.emit('newMessage');
+            sendMessageButton.style.display = "none";
             sendMessageB.click();
         }
         else{

@@ -228,7 +228,9 @@ router.post('/sendOrder', function(req, res){
     newOrder.orderText = req.body.orderText;
     newOrder.totalPrise = req.body.totalPrise;
     newOrder.save(function(){
-        res.redirect('/');
+        res.render('./layouts/orderSent', {
+            clientName: req.body.personName
+        });
     });
 });
 
@@ -258,7 +260,9 @@ router.post('/contactUs', function(req, res){
     newMessage.number = req.body.number;
     newMessage.message = req.body.message;
     newMessage.save(function(){
-        res.redirect('/');
+        res.render('./layouts/messageSent', {
+            clientName: req.body.name
+        });
     });
 });
 
@@ -276,5 +280,7 @@ router.get('/deleteMessage/:id', function(req, res){
         res.redirect('/messages');
     });
 });
+
+
 
 module.exports = router;
