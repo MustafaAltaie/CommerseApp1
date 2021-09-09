@@ -345,6 +345,10 @@
 
 <script>
 
+    setTimeout(function(){
+        window.history.forward();
+    }, 0);
+
     var socket = io.connect('https://mustafaaltaiecommerce.herokuapp.com/');
 
     var offerRotatePerm = 1;
