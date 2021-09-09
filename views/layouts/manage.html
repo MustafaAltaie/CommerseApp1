@@ -157,7 +157,7 @@
                     <option value="Woman">
                     <option value="Child">
                 </datalist>
-                <input type="number" id="priseText" name="prise" placeholder="Prise">
+                <input type="number" id="priseText" name="prise" placeholder="Prise" min=1>
                 <input type="file" id="fileFile" name="file" style="display: none">
                 <input id="imgSrcText" name="imgSrc" placeholder="Name the image">
                 <input id="textText" name="text" placeholder="Text">
@@ -596,6 +596,7 @@
                     id: '', name: '', info: ''
                 });
                 addEmpTextFill(fillInfoN);
+                employeeFile.value = "";
             }
         }
         if(evt.target.className != "employeePic"
@@ -646,7 +647,7 @@
             employeeFile.click();
         }
         else if(addEmployeeSubmitP.innerHTML == "Delete Employee"){
-            addEmployeeSubmitP.style.display = "none";
+            addEmployeeForm.style.display = "none";
             window.location.href = '/deleteEmployee/' + employee_Id.value + '/' + employeeNameText.value;
         }
         else{
@@ -663,6 +664,7 @@
             else alert('Fill all the fields');
         }
     }
+
 
     document.getElementById('employeeFile').onchange = function(){
         if(employeeFile.value != ""){
@@ -1086,23 +1088,30 @@
             fileFile.click();
         }
         else{
-                if(catigoryText.value != "" && genderText.value != ""
-                && priseText.value != "" && textText.value != ""){
-                    if(genderText.value != "Man"
-                    && genderText.value != "Woman"
-                    && genderText.value != "Child"){
-                        alert('Gender can be either Man, Woman or Child');
-                        genderText.value = "";
-                    }
-                    else{
-                        addItemForm.style.display = "none";
-                        addItemSubmit.click();
-                        socket.emit('reload');
-                    }
+            if(catigoryText.value != "" && genderText.value != ""
+            && priseText.value != "" && textText.value != ""
+            && imgSrcText.value != ""){
+                if(genderText.value != "Man"
+                && genderText.value != "Woman"
+                && genderText.value != "Child"){
+                    alert('Gender can be either Man, Woman or Child');
+                    genderText.value = "";
                 }
-                else
-                alert('Fill all the fields');
+                else{
+                    addItemForm.style.display = "none";
+                    addItemSubmit.click();
+                    socket.emit('reload');
+                }
+            }
+            else
+            alert('Fill all the fields');
         }
+    }
+
+
+    document.getElementById('priseText').onkeydown = function(e){
+        e.preventDefault();
+        e.stopPropagation();
     }
 
     document.getElementById('fileFile').onchange = function(){
@@ -1222,6 +1231,9 @@
         if(evt.target.id.substr(evt.target.id.length-4, evt.target.id.length) != "Text"
         && evt.target.id != "fileFile"){
             addItemForm.style.display = "none";
+            PText.innerHTML = "Upload image";
+            fileFile.value = "";
+            PText.style.background = "#999";
         }
     });
 
@@ -1289,14 +1301,7 @@
 
 
     document.getElementById('uploadMainPicP').onclick = function(){
-        if(uploadMainPicP.innerHTML == "Upload Image"){
-            mainPicPic.click();
-        }
-        else{
-            uploadMainPicB.click();
-            uploadMainPicP.style.display = "none";
-            socket.emit('reload');
-        }
+        mainPicPic.click();
     }
 
 
@@ -1306,7 +1311,8 @@
     document.getElementById('mainPicPic').onchange = function(){
         if(mainPicPic.value != ""){
             if(imageExt.includes(mainPicPic.value.substr(mainPicPic.value.length-4, mainPicPic.value.length))){
-                uploadMainPicP.innerHTML = "Upload";
+                uploadMainPicB.click();
+                socket.emit('reload');
             }
             else{
                 alert('File must be image');
