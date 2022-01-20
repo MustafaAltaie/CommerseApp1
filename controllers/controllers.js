@@ -102,6 +102,14 @@ router.get('/deleteItem/:id/:fileName', function(req, res){
 
 
 
+router.get('/delete/:idName', function(req, res){
+    Name.findByIdAndRemove(req.params.idName, function(){
+        res.redirect('/t');
+    });
+});
+
+
+
 router.post('/newPriseCheckbox', function(req, res){
     if(req.body._id == ""){
         var priseCheck = new PriseCheck();
@@ -182,6 +190,21 @@ router.post('/addOffer', function(req, res){
         });
     }
 });
+
+// router.post('/form1', function(req, res){
+//     if(req.body._id == ""){
+//         var name = new Name();
+//         name.firstName = req.body.firstname;
+//         name.save(function(){
+//             res.redirect('/added');
+//         });
+//     }
+//     else{
+//         Name.findByIdAndUpdate({_id: req.body._id}, req.body, {new: true}, function(){
+//             res.redirect('/updated');
+//         });
+//     }
+// });
 
 
 
